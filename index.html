@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 대출 상환 계산기 | webcashing.shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #f8fafc; }
+        .result-card { transition: all 0.3s ease; }
+        .result-card:hover { transform: translateY(-5px); }
+    </style>
+    </head>
+<body class="text-slate-800 font-sans">
+
+    <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center h-20">
+            <div class="text-3xl font-black text-blue-800 tracking-tighter">webcashing.shop</div>
+            <nav class="hidden md:flex space-x-8 text-sm font-bold text-slate-600">
+                <a href="#" class="hover:text-blue-700">대출계산기</a>
+                <a href="#guide" class="hover:text-blue-700">이용가이드</a>
+                <a href="#qna" class="hover:text-blue-700">금융Q&A</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        
+        <section class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100 mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-slate-900">대출 상환 시뮬레이션</h2>
+                <p class="text-slate-500 mt-2">정확한 원리금 상환액을 계산하고 체계적인 부채 관리 계획을 세우세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-2">
+                    <label class="block text-sm font-black text-slate-700">대출 원금 (원)</label>
+                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 50,000,000">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-black text-slate-700">연 이자율 (%)</label>
+                    <input type="number" id="interest" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 4.5">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-black text-slate-700">대출 기간 (개월)</label>
+                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 36">
+                </div>
+            </div>
+
+            <button onclick="calculateLoan()" class="w-full mt-10 bg-blue-800 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:bg-blue-900 hover:shadow-2xl transform active:scale-95 transition-all">
+                상환 금액 계산하기
+            </button>
+
+            <div id="result-box" class="hidden mt-12 pt-10 border-t-2 border-dashed border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="result-card bg-blue-50 p-8 rounded-2xl border border-blue-100 text-center">
+                        <p class="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">매월 상환액</p>
+                        <p id="monthlyPay" class="text-4xl font-black text-blue-900 tracking-tight">-</p>
+                    </div>
+                    <div class="result-card bg-red-50 p
