@@ -3,228 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>머니파인더 | 스마트 대출 통합 가이드</title>
+    <title>머니파인더 | 스마트 금융 지식 플랫폼</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
-        body { background-color: #ffffff; color: #1e293b; font-family: 'Pretendard', sans-serif; }
-        .nav-item { cursor: pointer; padding: 1rem 0.5rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 4px solid transparent; }
-        .nav-item.active { color: #1d4ed8; border-bottom: 4px solid #1d4ed8; }
-        .calculator-card { background: #f8fafc; border-radius: 24px; padding: 2.5rem; border: 1px solid #e2e8f0; }
-        .result-display { background: #eff6ff; border-radius: 15px; padding: 2rem; margin-top: 2rem; display: none; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body { background-color: #fcfdfe; color: #1e293b; font-family: 'Pretendard', sans-serif; word-break: keep-all; }
+        .nav-item { cursor: pointer; padding: 1rem 0.25rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 3px solid transparent; white-space: nowrap; }
+        .nav-item.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; }
+        .ai-overview-card { background: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); border: 1px solid #eef2f6; }
+        .calculator-card { background: #f8fafc; border-radius: 20px; padding: 2.5rem; border: 1px solid #e2e8f0; }
+        .result-display { background: #eff6ff; border-radius: 15px; padding: 1.5rem; margin-top: 1.5rem; display: none; }
+        .ai-badge { background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-style: italic; }
+        .content-box { line-height: 1.8; font-size: 1.05rem; }
+        .content-box h3 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 5px solid #1d4ed8; padding-left: 1rem; }
+        .content-box h4 { font-size: 1.25rem; font-weight: 700; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
+        .content-box p { margin-bottom: 1.25rem; color: #475569; }
     </style>
 </head>
 <body>
 
-    <header class="border-b sticky top-0 bg-white z-50 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="text-3xl font-black text-blue-700 tracking-tighter cursor-pointer" onclick="location.reload()">머니파인더</div>
-            <nav class="hidden md:flex space-x-8">
+    <header class="border-b sticky top-0 bg-white z-50 shadow-sm overflow-x-auto">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center gap-8">
+            <div class="text-3xl font-black text-blue-700 tracking-tighter cursor-pointer shrink-0" onclick="location.reload()">머니파인더</div>
+            <nav class="flex space-x-6 text-sm font-bold overflow-x-auto no-scrollbar">
                 <div id="tab-credit" class="nav-item active" onclick="changeMenu('credit')">신용대출</div>
                 <div id="tab-mortgage" class="nav-item" onclick="changeMenu('mortgage')">주택담보대출</div>
                 <div id="tab-rent" class="nav-item" onclick="changeMenu('rent')">전월세 대출</div>
                 <div id="tab-car" class="nav-item" onclick="changeMenu('car')">자동차담보대출</div>
+                <div id="tab-sunshine" class="nav-item" onclick="changeMenu('sunshine')">햇살론대출</div>
+                <div id="tab-unemployed" class="nav-item" onclick="changeMenu('unemployed')">무직자대출</div>
             </nav>
         </div>
     </header>
 
     <main class="max-w-4xl mx-auto px-6 py-12">
         
-        <h2 id="main-title" class="text-5xl md:text-7xl font-black text-slate-900 mb-4 tracking-tighter">
-            신용대출
-        </h2>
-        <p id="sub-title" class="text-xl text-slate-500 mb-12 font-medium">실시간 금리 시뮬레이션 및 맞춤형 금융 가이드</p>
+        <div class="mb-12">
+            <h2 id="main-title" class="text-4xl md:text-5xl font-black text-slate-900 mb-3 tracking-tight">신용대출</h2>
+            <p id="sub-title" class="text-lg text-slate-500 font-medium tracking-tight">담보 없이 개인의 신뢰로 결정되는 금융의 핵심</p>
+        </div>
 
-        <div class="calculator-card mb-16 shadow-sm">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="calculator-card mb-12 shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-left">
                 <div>
-                    <label class="block text-sm font-black text-slate-600 mb-3">대출 원금 (원)</label>
-                    <input type="number" id="amt" class="w-full p-4 rounded-2xl border-2 border-slate-200 focus:border-blue-500 focus:ring-0 outline-none transition-all" placeholder="예: 50,000,000">
+                    <label class="block text-xs font-black text-slate-500 mb-2 uppercase">대출 원금 (원)</label>
+                    <input type="number" id="amt" class="w-full p-4 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none transition-all" placeholder="0">
                 </div>
                 <div>
-                    <label class="block text-sm font-black text-slate-600 mb-3">연 이자율 (%)</label>
-                    <input type="number" id="rate" step="0.01" class="w-full p-4 rounded-2xl border-2 border-slate-200 focus:border-blue-500 focus:ring-0 outline-none transition-all" placeholder="예: 4.5">
+                    <label class="block text-xs font-black text-slate-500 mb-2 uppercase">연 이자율 (%)</label>
+                    <input type="number" id="rate" step="0.1" class="w-full p-4 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none transition-all" placeholder="0.0">
                 </div>
                 <div>
-                    <label class="block text-sm font-black text-slate-600 mb-3">상환 기간 (개월)</label>
-                    <input type="number" id="months" class="w-full p-4 rounded-2xl border-2 border-slate-200 focus:border-blue-500 focus:ring-0 outline-none transition-all" placeholder="예: 24">
+                    <label class="block text-xs font-black text-slate-500 mb-2 uppercase">기간 (개월)</label>
+                    <input type="number" id="months" class="w-full p-4 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none transition-all" placeholder="0">
                 </div>
             </div>
-            <button onclick="doCalc()" class="w-full py-5 bg-blue-700 text-white text-2xl font-black rounded-2xl hover:bg-blue-800 transition shadow-lg active:scale-95">
-                상환 금액 계산하기
+            <button onclick="doCalc()" class="w-full py-5 bg-blue-700 text-white text-xl font-black rounded-xl hover:bg-blue-800 transition transform active:scale-95">
+                지금 바로 계산하기
             </button>
 
-            <div id="res-area" class="result-display text-center border border-blue-200">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div id="res-area" class="result-display text-center border-2 border-blue-100">
+                <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <p class="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">매월 예상 상환액</p>
-                        <p id="res-monthly" class="text-4xl font-black text-blue-900">-</p>
+                        <p class="text-xs font-bold text-blue-600 mb-1">월 예상 상환액</p>
+                        <p id="res-monthly" class="text-3xl font-black text-blue-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm font-bold text-red-600 mb-2 uppercase tracking-widest">총 대출 이자 비용</p>
-                        <p id="res-interest" class="text-4xl font-black text-red-900">-</p>
+                        <p class="text-xs font-bold text-red-600 mb-1">총 납부 이자액</p>
+                        <p id="res-interest" class="text-3xl font-black text-red-900">-</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="info-area" class="space-y-12 text-slate-700">
+        <section class="ai-overview-card p-8 md:p-12 mb-20 border border-slate-100">
+            <div class="flex items-center gap-2 mb-8">
+                <span class="text-xl">✨</span>
+                <span class="ai-badge text-2xl uppercase tracking-tighter italic">AI Overview</span>
             </div>
+
+            <div id="info-area" class="content-box text-slate-700">
+                </div>
+        </section>
 
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-20 text-center">
-        <p class="text-3xl font-black text-white mb-4 tracking-tighter">머니파인더</p>
-        <p class="text-sm mb-8 opacity-60 font-medium">스마트 금융 데이터 시뮬레이션 서비스 | webcashing.shop</p>
-        <div class="flex justify-center space-x-6 text-xs font-bold uppercase tracking-widest">
-            <a href="#" class="hover:text-white">이용약관</a>
-            <a href="#" class="hover:text-white text-blue-400">개인정보처리방침</a>
-            <a href="#" class="hover:text-white">금융 가이드</a>
-        </div>
-        <p class="mt-10 text-[10px] opacity-30">&copy; 2026 MoneyFinder. All rights reserved.</p>
+    <footer class="bg-slate-900 text-slate-500 py-20 text-center">
+        <p class="text-2xl font-black text-white mb-4 tracking-tighter">머니파인더</p>
+        <p class="text-sm mb-6 opacity-60">webcashing.shop | 금융 데이터 시뮬레이션 서비스</p>
+        <p class="text-[10px] opacity-30 tracking-widest uppercase">&copy; 2026 MoneyFinder Platform. All rights reserved.</p>
     </footer>
 
     <script>
-        // 상세 데이터 베이스 (신용대출 내용은 제공해주신 텍스트 반영)
         const loanData = {
             credit: {
                 title: "신용대출",
-                subtitle: "본인의 신용과 소득을 기반으로 하는 무담보 금융 상품",
+                subtitle: "담보 없이 개인의 신뢰와 소득으로 결정되는 금융 솔루션",
                 content: `
-                    <div class="prose max-w-none">
-                        <p class="text-lg leading-relaxed mb-8 font-medium">신용대출은 담보(집, 차 등) 없이 본인의 신용도, 소득, 재직 상황 등을 바탕으로 금융기관이 대출해주는 상품입니다. 절차가 간편하고 빠르게 실행된다는 장점이 있지만, 금리가 상대적으로 높은 편입니다.</p>
-                        
-                        <h3 class="text-2xl font-black text-slate-900 mb-6">1. 신용대출 상품 종류</h3>
-                        <div class="overflow-x-auto mb-10">
-                            <table class="w-full text-sm text-left border-collapse border border-slate-200">
-                                <thead class="bg-slate-100">
-                                    <tr>
-                                        <th class="p-3 border border-slate-200">구분</th>
-                                        <th class="p-3 border border-slate-200">주요 종류</th>
-                                        <th class="p-3 border border-slate-200">대상자</th>
-                                        <th class="p-3 border border-slate-200">특징</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="p-3 border border-slate-200 font-bold">금융권별</td>
-                                        <td class="p-3 border border-slate-200">1금융권 / 2금융권</td>
-                                        <td class="p-3 border border-slate-200">고신용 / 중저신용</td>
-                                        <td class="p-3 border border-slate-200">금리 연 4~20%대 다양</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-3 border border-slate-200 font-bold">정부지원</td>
-                                        <td class="p-3 border border-slate-200">햇살론, 새희망홀씨</td>
-                                        <td class="p-3 border border-slate-200">서민·저신용자</td>
-                                        <td class="p-3 border border-slate-200">금리 7~12%대 우대</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-3 border border-slate-200 font-bold">상환방식</td>
-                                        <td class="p-3 border border-slate-200">건별 / 마이너스통장</td>
-                                        <td class="p-3 border border-slate-200">목돈 / 자유이용</td>
-                                        <td class="p-3 border border-slate-200">사용한 만큼만 이자</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                            <div class="p-6 bg-blue-50 rounded-2xl border border-blue-100">
-                                <h4 class="font-black text-blue-800 mb-4 text-xl">장점</h4>
-                                <ul class="space-y-2 text-sm font-medium">
-                                    <li>✔ 모바일로 빠른 신청 및 당일 승인 가능</li>
-                                    <li>✔ 담보 설정 서류 및 비용 없음</li>
-                                    <li>✔ 자금 용도에 제한이 거의 없음</li>
-                                    <li>✔ 한도 내 유연한 입출금 가능 (마통)</li>
-                                </ul>
-                            </div>
-                            <div class="p-6 bg-red-50 rounded-2xl border border-red-100">
-                                <h4 class="font-black text-red-800 mb-4 text-xl">단점</h4>
-                                <ul class="space-y-2 text-sm font-medium">
-                                    <li>✘ 담보대출 대비 높은 이자율</li>
-                                    <li>✘ 소득에 따른 한도 제한 (연봉 100% 내외)</li>
-                                    <li>✘ 상대적으로 짧은 상환 기간</li>
-                                    <li>✘ 연체 시 신용점수 하락폭이 큼</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h3 class="text-2xl font-black text-slate-900 mb-6">3. 신용대출 이용 시 주의점</h3>
-                        <div class="bg-slate-100 p-8 rounded-3xl space-y-4 font-medium text-slate-700">
-                            <p>1. <strong>신용 조회 관리:</strong> 단기간 여러 곳 조회 시 신용 점수에 불리할 수 있습니다.</p>
-                            <p>2. <strong>상환 능력 점검:</strong> DSR 규제로 인해 과도한 대출은 추후 금융 거래를 어렵게 합니다.</p>
-                            <p>3. <strong>우선순위 비교:</strong> 가급적 1금융권 → 정부지원 → 2금융권 순으로 확인하세요.</p>
-                            <p>4. <strong>연체 절대 금지:</strong> 단 하루의 연체도 신용등급에 치명적입니다.</p>
-                        </div>
-                    </div>
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">신용대출은 담보 없이 본인의 신용도와 소득, 재직 상황을 바탕으로 금융기관이 자금을 대출해주는 상품입니다. 절차가 간편하고 실행 속도가 빠르지만 이자 부담이 담보대출보다 높은 것이 특징입니다.</p>
+                    <h3>1. 신용대출 상품의 구조적 이해</h3>
+                    <p>신용대출은 금융기관이 차주의 미래 소득 창출 능력과 부채 상환 의지를 수치화하여 진행합니다. 나이스(NICE)나 올크레딧(KCB) 데이터를 활용하며, 최근에는 비금융 데이터를 활용한 대안 신용평가 모델도 도입되고 있습니다.</p>
+                    <h4>금융권별 특징</h4>
+                    <p>1금융권은 고신용자를 대상으로 저금리를 제공하며, 2금융권은 승인 문턱은 낮으나 금리가 높습니다. 정부지원 상품은 저신용 서민을 위한 정책 금융으로 운영됩니다.</p>
+                    <h3>2. 장단점 및 상환 전략</h3>
+                    <p>신속한 자금 마련이 가능하지만 과도한 대출은 신용점수 하락과 DSR 규제에 걸려 추후 주담대 등 중요한 거래 시 불이익을 줄 수 있습니다. 원금균등 혹은 원리금균등 방식을 본인의 가계 흐름에 맞춰 선택해야 합니다.</p>
                 `
             },
             mortgage: {
                 title: "주택담보대출",
-                subtitle: "내 집 마련을 위한 가장 큰 금융 파트너, 주담대 완전 정복",
+                subtitle: "내 집 마련의 핵심 로드맵, 주담대의 모든 것",
                 content: `
-                    <div class="prose max-w-none">
-                        <p class="text-lg leading-relaxed mb-8 font-medium">주택을 담보로 큰 자금을 장기간(최대 40~50년) 빌리는 상품입니다. 금리가 가장 낮지만, LTV와 DSR 등 강력한 정부 규제가 적용됩니다.</p>
-                        <h3 class="text-2xl font-black text-slate-900 mb-6">핵심 용어 정리</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                            <div class="p-6 border rounded-2xl">
-                                <h4 class="font-bold text-blue-700 mb-2">LTV (주택담보대출비율)</h4>
-                                <p class="text-sm font-medium text-slate-500">주택 가치 대비 대출 가능한 최대 한도를 의미합니다. (예: 9억 주택, LTV 70%면 최대 6.3억)</p>
-                            </div>
-                            <div class="p-6 border rounded-2xl">
-                                <h4 class="font-bold text-blue-700 mb-2">DSR (총부채원리금상환비율)</h4>
-                                <p class="text-sm font-medium text-slate-500">모든 대출의 원리금 상환액이 연소득의 일정 비율을 넘지 못하게 제한하는 제도입니다.</p>
-                            </div>
-                        </div>
-                        <div class="p-8 bg-blue-900 text-white rounded-3xl mb-10 shadow-xl">
-                            <h4 class="text-xl font-black mb-4 italic">머니파인더 Tip!</h4>
-                            <p class="text-blue-100 leading-relaxed font-medium">"금리 인상기에는 고정금리가 유리할 수 있으나, 향후 금리 인하가 예상된다면 변동금리나 주기형 금리를 꼼꼼히 비교해야 합니다."</p>
-                        </div>
-                    </div>
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">주택담보대출은 주택을 담보로 큰 자금을 장기간 빌리는 상품입니다. 가계 부채 중 가장 비중이 크며 정부의 부동산 및 금융 규제 정책에 가장 민감하게 반응합니다.</p>
+                    <h3>1. 핵심 규제 지표 (LTV, DTI, DSR)</h3>
+                    <p>LTV는 집값 대비 대출 한도, DSR은 소득 대비 모든 부채의 원리금 상환액 비중을 뜻합니다. 특히 DSR 40% 규제는 대출 한도를 결정하는 가장 강력한 잣대입니다.</p>
+                    <h3>2. 금리 선택과 정책 상품</h3>
+                    <p>고정금리와 변동금리의 장단점을 비교해야 하며, 신생아 특례대출이나 디딤돌대출 같은 정부 정책 상품을 1순위로 검토하는 것이 이자 비용을 절감하는 비결입니다.</p>
                 `
             },
             rent: {
                 title: "전월세 대출",
-                subtitle: "주거 안정을 위한 보증금 지원 대출, 정부 상품부터 확인하세요",
+                subtitle: "주거 비용을 절감하는 안정적인 보증금 지원 솔루션",
                 content: `
-                    <div class="prose max-w-none">
-                        <p class="text-lg leading-relaxed mb-8 font-medium">전세나 월세 보증금이 부족할 때 이용하는 대출입니다. HUG(주택도시보증공사), HF(한국주택금융공사) 등의 보증을 통해 실행됩니다.</p>
-                        <h3 class="text-2xl font-black text-slate-900 mb-6">추천 정부 지원 상품</h3>
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-start bg-slate-50 p-4 rounded-xl">
-                                <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mr-4">추천</span>
-                                <div><strong>버팀목 전세자금대출:</strong> 무주택 서민을 위한 저금리 정책 상품</div>
-                            </li>
-                            <li class="flex items-start bg-slate-50 p-4 rounded-xl">
-                                <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mr-4">청년</span>
-                                <div><strong>청년 전용 전세자금:</strong> 만 34세 이하 청년 대상 초저금리 혜택</div>
-                            </li>
-                        </ul>
-                        <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
-                            <p class="text-red-700 text-sm font-bold">🚨 주의: 계약 전 반드시 해당 집의 '근저당권' 설정을 확인하고, 전세보증보험 가입 가능 여부를 체크하세요.</p>
-                        </div>
-                    </div>
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">전월세 대출은 임대차 계약 시 보증금을 지원받는 상품입니다. 주택도시보증공사(HUG)나 한국주택금융공사(HF)의 보증서를 담보로 실행됩니다.</p>
+                    <h3>1. 보증 기관별 차이점</h3>
+                    <p>HUG 안심전세는 보증금 반환 보증까지 포함되어 전세 사기 방지에 유리하며, HF 전세자금은 소득 위주로 평가하여 가장 보편적입니다.</p>
+                    <h3>2. 주의사항 및 사기 예방</h3>
+                    <p>계약 전 등기부등본 확인을 통해 선순위 채권을 파악하고 보증보험 가입 가능 여부를 필히 확인해야 소중한 자산을 지킬 수 있습니다.</p>
                 `
             },
             car: {
                 title: "자동차담보대출",
-                subtitle: "내 차는 그대로 타면서 자금은 빠르게, 차량 담보 대출 가이드",
+                subtitle: "내 차는 그대로 타면서 자산 가치를 활용하는 대출",
                 content: `
-                    <div class="prose max-w-none">
-                        <p class="text-lg leading-relaxed mb-8 font-medium">본인 명의의 차량 가치를 평가하여 한도를 산출하는 대출입니다. 차량을 입고하지 않고 운행하며 받을 수 있는 무설정 상품이 인기입니다.</p>
-                        <h3 class="text-2xl font-black text-slate-900 mb-6">대출 가능 조건</h3>
-                        <div class="bg-white border rounded-3xl p-8 shadow-sm space-y-4 font-medium text-slate-600">
-                            <p>• <strong>대상 차량:</strong> 국산/수입 승용, RV, 승합차 (보통 10년 이내 연식)</p>
-                            <p>• <strong>한도:</strong> 차량 시세의 최대 100% ~ 200% (신용도에 따라 상이)</p>
-                            <p>• <strong>장점:</strong> 소득 증빙이 어려운 무직자나 주부도 차량 가액으로 진행 가능</p>
-                        </div>
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">자동차담보대출은 차량의 가치를 담보로 자금을 빌리는 상품입니다. 무설정·무입고 상품이 주를 이루어 차량을 그대로 운행하며 이용 가능합니다.</p>
+                    <h3>1. 대상 차량 및 한도 산출</h3>
+                    <p>보통 10년 이내의 연식과 20만km 이내의 주행거리 차량이 유리하며 중고차 시세의 최대 150% 이상까지 한도가 나올 수 있습니다.</p>
+                    <h3>2. 장점 및 상환 프로세스</h3>
+                    <p>소득 증빙이 어려운 주부나 프리랜서도 차량 가액만으로 진행 가능하며, 승인 당일 입금되는 빠른 속도가 최대 장점입니다.</p>
+                `
+            },
+            sunshine: {
+                title: "햇살론대출",
+                subtitle: "저신용·저소득 서민을 위한 국가 보증 정책 금융",
+                content: `
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">햇살론은 대부업이나 제2금융권의 고금리 대출을 이용할 수밖에 없는 저신용·저소득 서민들에게 저금리로 자금을 지원하는 정부 지원 상품입니다. 서민금융진흥원의 보증을 기반으로 운영됩니다.</p>
+                    
+                    <h3>1. 햇살론의 종류와 지원 대상</h3>
+                    <p>햇살론은 대상자에 따라 크게 근로자 햇살론, 햇살론15, 햇살론 youth 등으로 나뉩니다.</p>
+                    <ul class="list-disc pl-5 space-y-3 mb-8">
+                        <li><strong>근로자 햇살론:</strong> 연소득 3,500만 원 이하 또는 신용점수 하위 20%이면서 연소득 4,500만 원 이하인 3개월 이상 재직자가 대상입니다. 금리는 연 7~11%대 수준입니다.</li>
+                        <li><strong>햇살론15:</strong> 고금리 대출(연 20% 이상) 이용이 불가피한 최저신용자를 위한 상품입니다. 금리는 연 15.9%로 높지만 성실 상환 시 매년 금리가 인하됩니다.</li>
+                        <li><strong>햇살론 youth:</strong> 대학생 및 미취업 청년의 경제적 자립을 돕는 상품으로 3.5% 내외의 아주 낮은 금리가 특징입니다.</li>
+                    </ul>
+
+                    <h3>2. 대출 한도 및 상환 구조</h3>
+                    <p>보통 최대 2,000만 원 내외에서 한도가 결정되며, 상환 기간은 3년 또는 5년 중 선택할 수 있습니다. 원금균등분할상환 방식으로 진행되어 시간이 지날수록 이자 부담이 줄어드는 구조입니다.</p>
+                    
+                    <h3>3. 신청 절차 및 구비 서류</h3>
+                    <p>서민금융진흥원 앱을 통해 비대면으로 한도 조회가 가능하며, 필요 서류로는 건강보험 자격득실확인서, 납부확인서 등 소득 및 재직 증빙 서류가 필수적입니다.</p>
+                    
+                    <div class="p-6 bg-yellow-50 border-2 border-yellow-200 rounded-2xl my-8">
+                        <h4 class="text-yellow-800 mt-0 font-black italic">⚠️ 주의: 햇살론 사기 주의!</h4>
+                        <p class="text-sm leading-relaxed mb-0">정식 금융기관은 문자나 전화를 통해 먼저 대출 권유를 하거나 수수료를 요구하지 않습니다. 반드시 서민금융진흥원 공식 채널을 통해 확인하십시오.</p>
+                    </div>
+                `
+            },
+            unemployed: {
+                title: "무직자대출",
+                subtitle: "소득 증빙 없이도 가능한 비대면 간편 금융 가이드",
+                content: `
+                    <p class="text-lg font-bold text-slate-900 mb-6 underline decoration-blue-200 decoration-4 underline-offset-8">무직자대출은 고정적인 소득 증빙이 어려운 취업 준비생, 주부, 프리랜서 등을 위한 상품입니다. 재직 증명 대신 신용카드 사용 내역, 통신비 납부 이력, 보험료 납부액 등을 기준으로 심사합니다.</p>
+                    
+                    <h3>1. 무직자가 이용 가능한 주요 상품군</h3>
+                    <p>소득이 없더라도 금융사는 '상환 가능성'을 다른 지표로 판단하여 대출을 실행합니다.</p>
+                    <ul class="list-disc pl-5 space-y-4 mb-8">
+                        <li><strong>1금융권 비상금대출:</strong> 카카오뱅크, 토스뱅크 등에서 운영하는 300만 원 한도의 소액 대출입니다. 통신 등급이나 서울보증보험의 보증을 통해 실행됩니다.</li>
+                        <li><strong>신용카드 소지자 대출:</strong> 본인 명의의 신용카드를 1년 이상 정상적으로 사용한 이력이 있다면 신용점수를 바탕으로 대출이 가능합니다.</li>
+                        <li><strong>자산 기반 대출:</strong> 본인 명의의 주택이나 자동차를 소유하고 있다면 소득 증빙 없이 담보 가치만으로 고액 대출이 가능합니다.</li>
+                    </ul>
+
+                    <h3>2. 무직자대출의 금리와 한도</h3>
+                    <p>담보나 소득이 없으므로 금리는 일반 직장인 대출보다 2~4%가량 높게 책정될 수 있습니다. 소액 상품은 300만 원 고정이 많으며, 자산 기반 상품은 수천만 원까지 확대될 수 있습니다.</p>
+
+                    <h3>3. 이용 시 치명적인 리스크 관리</h3>
+                    <p>무직 상태에서의 대출은 상환 재원이 불투명하므로 연체 가능성이 높습니다. 연체 시 신용점수가 급락하여 추후 취업 후에도 금융 거래에 큰 제약을 받을 수 있습니다. 가급적 긴급한 생활비 외의 목적으로는 지양해야 합니다.</p>
+
+                    <div class="p-8 bg-slate-100 rounded-3xl space-y-4 my-10 border border-slate-200">
+                        <h4 class="mt-0 font-black text-slate-800">💡 무직자 금융 팁: '서민금융진흥원'의 소액생계비대출</h4>
+                        <p class="text-sm leading-relaxed">연소득 3,500만 원 이하이며 연체 중인 무직자도 지원 가능한 상품입니다. 최초 50만 원, 성실 상환 시 추가 50만 원을 지원받을 수 있으니 고금리 사금융을 찾기 전 반드시 확인하세요.</p>
                     </div>
                 `
             }
         };
 
-        // 탭 변경 함수
         function changeMenu(type) {
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + type).classList.add('active');
@@ -234,41 +205,33 @@
             document.getElementById('sub-title').innerText = item.subtitle;
             document.getElementById('info-area').innerHTML = item.content;
 
-            // 결과 영역 초기화
             document.getElementById('res-area').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 대출 상환액 계산 (원리금균등상환 방식)
         function doCalc() {
             const P = parseFloat(document.getElementById('amt').value);
             const rate = parseFloat(document.getElementById('rate').value);
             const n = parseFloat(document.getElementById('months').value);
 
             if (!P || isNaN(rate) || !n) {
-                alert("정확한 대출 정보를 입력해주세요.");
+                alert("정확한 정보를 입력해주세요.");
                 return;
             }
 
             const r = (rate / 100) / 12;
             let monthlyPay;
-            
-            if (r === 0) {
-                monthlyPay = P / n;
-            } else {
-                monthlyPay = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            }
+            if (r === 0) monthlyPay = P / n;
+            else monthlyPay = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
             
             const totalInt = (monthlyPay * n) - P;
 
             document.getElementById('res-monthly').innerText = Math.round(monthlyPay).toLocaleString() + " 원";
             document.getElementById('res-interest').innerText = Math.round(totalInt).toLocaleString() + " 원";
             document.getElementById('res-area').style.display = 'block';
-            
             document.getElementById('res-area').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 초기 화면: 신용대출 로드
         window.onload = () => changeMenu('credit');
     </script>
 </body>
