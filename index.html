@@ -10,68 +10,68 @@
         
         body { background-color: #ffffff; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; word-break: keep-all; }
         
-        /* 네비게이션 가로 스크롤 (모바일 대응) */
+        /* 네비게이션 가로 스크롤 */
         .nav-scroll { display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .nav-scroll::-webkit-scrollbar { display: none; }
         
-        .nav-link { padding: 1rem 0.75rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 4px solid transparent; flex-shrink: 0; font-size: 0.95rem; }
-        .nav-link.active { color: #1d4ed8; border-bottom: 4px solid #1d4ed8; }
+        .nav-link { padding: 0.8rem 0.6rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 3px solid transparent; flex-shrink: 0; font-size: 0.9rem; }
+        .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; }
 
-        /* 레이아웃 */
-        .main-container { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
-        @media (min-width: 768px) { .main-container { padding: 5rem 2rem 10rem; } }
+        /* 레이아웃: 모바일 간격 압축 */
+        .main-container { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+        @media (min-width: 768px) { .main-container { padding: 4rem 2rem 10rem; } }
         
-        /* 메인 타이틀 */
+        /* [수정] 메인 타이틀: 모바일 최적화 사이즈 (1.5rem) */
         h1 { 
-            font-size: 1.8rem; 
+            font-size: 1.5rem; 
             font-weight: 900; 
             color: #0f172a; 
-            margin-bottom: 2rem; 
+            margin-bottom: 1.25rem; 
             line-height: 1.3; 
             letter-spacing: -0.05em; 
             display: block;
         }
         @media (min-width: 768px) { 
-            h1 { font-size: 3.75rem; margin-bottom: 3.5rem; } 
+            h1 { font-size: 3rem; margin-bottom: 3rem; } 
         }
 
-        /* 소제목 디자인 */
+        /* 소제목 디자인: 로고 사이즈와 통일 및 간격 압축 */
         .sub-headline { 
-            font-size: 1.35rem; 
+            font-size: 1.25rem; 
             font-weight: 900; 
             color: #1d4ed8; 
             background: #eff6ff; 
-            padding: 1rem 1.25rem; 
-            border-radius: 12px; 
-            margin-top: 3rem; 
-            margin-bottom: 1.5rem; 
-            line-height: 1.3; 
+            padding: 0.8rem 1rem; 
+            border-radius: 10px; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1.25rem; 
+            line-height: 1.2; 
             letter-spacing: -0.02em; 
             display: block; 
             width: fit-content;
             border-left: 6px solid #1d4ed8;
         }
         @media (min-width: 768px) {
-            .sub-headline { font-size: 1.875rem; border-radius: 16px; padding: 1.25rem 1.75rem; margin-top: 6rem; margin-bottom: 2.5rem; border-left: 8px solid #1d4ed8; }
+            .sub-headline { font-size: 1.875rem; border-radius: 16px; padding: 1.25rem 1.75rem; margin-top: 5rem; margin-bottom: 2.5rem; }
         }
         
-        /* 본문 폰트 및 간격 최적화 */
+        /* [수정] 본문 폰트 및 줄간격: 모바일에서 촘촘하게 (leading-1.5) */
         p { 
-            font-size: 1.05rem; 
-            line-height: 1.7; 
-            margin-bottom: 1.8rem; 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            margin-bottom: 1.25rem; 
             color: #475569; 
             text-align: justify; 
         }
         @media (min-width: 768px) {
-            p { font-size: 1.15rem; line-height: 2.1; margin-bottom: 3.5rem; } 
+            p { font-size: 1.1rem; line-height: 2; margin-bottom: 3rem; } 
         }
 
-        ul { margin-bottom: 2rem; list-style-type: disc; padding-left: 1.5rem; color: #475569; }
-        @media (min-width: 768px) { ul { margin-bottom: 3.5rem; } }
+        ul { margin-bottom: 1.5rem; list-style-type: disc; padding-left: 1.25rem; color: #475569; }
+        @media (min-width: 768px) { ul { margin-bottom: 3rem; } }
 
-        li { margin-bottom: 0.75rem; font-size: 1.05rem; line-height: 1.6; }
-        @media (min-width: 768px) { li { margin-bottom: 1rem; font-size: 1.15rem; line-height: 1.8; } }
+        li { margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.5; }
+        @media (min-width: 768px) { li { margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.8; } }
 
         strong { color: #1e293b; font-weight: 700; }
         .highlight-text { color: #1d4ed8; font-weight: 800; }
@@ -80,11 +80,11 @@
 <body>
 
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3 md:py-0 md:h-20 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center justify-center w-full md:w-auto py-2 md:py-0">
-                <div class="text-3xl font-black text-blue-700 tracking-tighter shrink-0 cursor-pointer" onclick="location.href='index.html'">머니파인더</div>
+        <div class="max-w-7xl mx-auto px-4 py-2 md:py-0 md:h-20 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center justify-center w-full md:w-auto py-1 md:py-0">
+                <div class="text-2xl md:text-3xl font-black text-blue-700 tracking-tighter shrink-0 cursor-pointer" onclick="location.href='index.html'">머니파인더</div>
             </div>
-            <nav class="nav-scroll w-full md:w-auto mt-2 md:mt-0 border-t md:border-t-0 pt-2 md:pt-0">
+            <nav class="nav-scroll w-full md:w-auto mt-1 md:mt-0 border-t md:border-t-0 pt-1 md:pt-0">
                 <a href="calculator.html" class="nav-link">대출계산기</a>
                 <a href="index.html" class="nav-link active">신용대출</a>
                 <a href="mortgage.html" class="nav-link">주택담보대출</a>
@@ -207,10 +207,10 @@
         </article>
     </div>
 
-    <footer class="bg-slate-900 py-16 text-center text-slate-500 px-4">
-        <p class="text-3xl font-black text-white mb-4 tracking-tighter">머니파인더</p>
-        <p class="text-sm mb-8 opacity-60 font-medium">webcashing.shop | 금융 데이터의 새로운 기준</p>
-        <p class="text-[10px] opacity-30 tracking-[0.3em] uppercase font-bold">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
+    <footer class="bg-slate-900 py-12 text-center text-slate-500 px-4">
+        <p class="text-2xl font-black text-white mb-4 tracking-tighter">머니파인더</p>
+        <p class="text-xs mb-6 opacity-60 font-medium">webcashing.shop | 금융 데이터의 새로운 기준</p>
+        <p class="text-[10px] opacity-30 tracking-[0.2em] uppercase font-bold">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
     </footer>
 </body>
 </html>
