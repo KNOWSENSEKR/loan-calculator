@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신용대출 가이드 v2.0 | 머니파인더</title>
+    <title>신용대출 상세 가이드 v2.1 | 머니파인더</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
-        body { background-color: #f8fafc; color: #1e293b; font-family: 'Pretendard', sans-serif; line-height: 1.8; }
+        body { background-color: #f8fafc; color: #1e293b; font-family: 'Pretendard', sans-serif; line-height: 1.9; }
         .nav-link { padding: 1.25rem 0.5rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 4px solid transparent; }
         .nav-link:hover { color: #1d4ed8; }
         .nav-link.active { color: #1d4ed8; border-bottom: 4px solid #1d4ed8; }
-        .content-card { background: #ffffff; border-radius: 28px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h2 { font-size: 2.25rem; font-weight: 900; color: #0f172a; margin: 3rem 0 1.5rem; }
-        h3 { font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 2.5rem 0 1.25rem; border-left: 6px solid #1d4ed8; padding-left: 1rem; }
-        p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #475569; text-align: justify; }
-        .calculator-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 24px; padding: 2.5rem; border: 1px solid #bfdbfe; margin-bottom: 3rem; }
+        .content-card { background: #ffffff; border-radius: 28px; padding: 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+        
+        /* 문장 간격 및 제목 여백 설정 */
+        h2 { font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-top: 4rem; margin-bottom: 2rem; letter-spacing: -0.05em; }
+        h3 { font-size: 1.85rem; font-weight: 800; color: #1e293b; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 8px solid #1d4ed8; padding-left: 1.5rem; }
+        h4 { font-size: 1.4rem; font-weight: 700; color: #334155; margin-top: 2.5rem; margin-bottom: 1.25rem; }
+        p { margin-bottom: 2rem; font-size: 1.15rem; color: #475569; text-align: justify; line-height: 2; }
+        ul { margin-bottom: 2.5rem; }
+        li { margin-bottom: 1rem; padding-left: 1rem; position: relative; }
+        
+        .calculator-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 24px; padding: 3rem; border: 1px solid #bfdbfe; margin-bottom: 4rem; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
@@ -34,47 +41,68 @@
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">신용대출 상세 가이드</h1>
-        <p class="text-xl text-slate-500 mb-12">당신의 신용이 자본이 되는 원리와 스마트한 활용법</p>
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tight">신용대출 상세 가이드</h1>
+        <p class="text-2xl text-slate-500 mb-16 font-medium">개인의 신용이 자본이 되는 원리와 스마트한 자금 활용 전략</p>
 
-        <div class="calculator-box shadow-lg">
-            <h4 class="text-blue-800 font-black mb-6 text-xl">신용대출 상환 시뮬레이션</h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <input type="number" id="amt" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold" placeholder="대출 원금 (원)">
-                <input type="number" id="rate" step="0.1" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold" placeholder="연 이자율 (%)">
-                <input type="number" id="months" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold" placeholder="기간 (개월)">
+        <div class="calculator-box shadow-xl">
+            <h4 class="text-blue-800 font-black mb-8 text-2xl">실시간 신용대출 상환 분석기</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-blue-600 mb-2 uppercase">대출 원금 (원)</label>
+                    <input type="number" id="amt" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold text-lg" placeholder="예: 30000000">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-blue-600 mb-2 uppercase">연 이자율 (%)</label>
+                    <input type="number" id="rate" step="0.1" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold text-lg" placeholder="예: 5.5">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-blue-600 mb-2 uppercase">상환 기간 (개월)</label>
+                    <input type="number" id="months" class="p-4 rounded-xl border-2 border-white focus:border-blue-500 outline-none font-bold text-lg" placeholder="예: 12">
+                </div>
             </div>
-            <button onclick="doCalc()" class="w-full py-5 bg-blue-700 text-white text-xl font-black rounded-xl hover:bg-blue-800 transition shadow-lg">상환 금액 분석하기</button>
-            <div id="res" class="hidden mt-8 p-6 bg-white rounded-2xl border-2 border-blue-200 text-center animate-bounce">
-                <p class="text-sm font-bold text-blue-600 mb-1 uppercase">매월 상환액: <span id="res-m" class="text-2xl text-blue-900 ml-2">-</span></p>
+            <button onclick="doCalc()" class="w-full py-6 bg-blue-700 text-white text-2xl font-black rounded-2xl hover:bg-blue-800 transition shadow-2xl active:scale-95">상환 금액 분석 실행</button>
+            <div id="res" class="hidden mt-10 p-8 bg-white rounded-3xl border-2 border-blue-200 text-center">
+                <p class="text-lg font-bold text-blue-600 mb-2 uppercase tracking-widest">매월 상환 예정액</p>
+                <p id="res-m" class="text-5xl font-black text-blue-900 tracking-tighter">-</p>
             </div>
         </div>
 
         <article class="content-card">
-            <h2>신용대출의 본질과 금융학적 가치</h2>
-            <p>신용대출은 차주의 신용도와 소득 수준을 기반으로 무담보로 진행되는 금융의 정점입니다. 이는 단순한 부채를 넘어, 개인의 미래 경제적 가치를 현재로 당겨와 기회비용을 창출하는 고도의 금융 행위입니다. 대한민국 금융 시스템에서 신용대출은 가계 경제의 유동성을 확보하는 가장 중요한 수단 중 하나로 자리 잡고 있습니다.</p>
+            <h2>신용대출의 메커니즘과 현대 금융의 가치</h2>
+            <p>신용대출은 현대 자본주의 사회에서 개인이 가진 경제적 신뢰도를 즉각적인 유동성으로 전환하는 가장 강력한 금융 도구입니다. 담보물이라는 실물 자산 없이 오직 차주의 소득 창출 능력과 과거의 성실한 금융 거래 이력만을 근거로 자금을 융통하는 행위는 개인의 미래 가치를 현재로 소환하는 고도의 경제 활동이라 할 수 있습니다.</p>
 
-            <h3>1. 신용평가 시스템의 정밀 분석</h3>
-            <p>금융기관은 나이스(NICE)와 올크레딧(KCB)이라는 두 거대 신용평가사의 데이터를 바탕으로 차주를 평가합니다. 단순히 연체 여부만을 보는 것이 아니라, 신용카드의 이용 패턴, 대출의 종류(1금융권 vs 2금융권), 부채의 질(단기 카드론 유무) 등을 정교한 알고리즘으로 분석합니다. 최근에는 머신러닝 기반의 AI 심사가 도입되어 통신비 납부 이력이나 온라인 쇼핑 패턴까지도 신용 평가의 보조 지표로 활용되고 있습니다.</p>
+            <p>오늘날 신용대출은 단순한 소비 자금을 넘어 자기계발 투자, 사업 운영자금, 그리고 고금리 부채를 저금리로 통합하는 대환 목적으로 폭넓게 활용됩니다. 머니파인더는 사용자가 복잡한 금리 체계 속에서 길을 잃지 않도록 3,000자 이상의 초밀도 분석 데이터를 제공하여 현명한 의사결정을 돕고자 합니다.</p>
 
-            <h3>2. 금리 산출 로직: 기준금리와 가산금리의 결합</h3>
-            <p>대출 금리는 마음대로 정해지는 것이 아닙니다. 조달 금리인 '기준금리(COFIX 등)'에 은행의 운영 비용과 차주의 리스크를 반영한 '가산금리'가 더해지고, 여기에 부수 거래를 통한 '우대금리'가 차감되어 최종 금리가 결정됩니다. 따라서 평소 해당 은행의 주거래 실적을 관리하는 것은 실질 이자 비용을 낮추는 가장 효과적인 재무 전략입니다.</p>
+            <h3>1. 신용평가 시스템의 심층적 분석: NICE vs KCB</h3>
+            <p>대한민국 금융기관이 차주를 평가할 때 가장 신뢰하는 데이터는 나이스(NICE)평가정보와 코리아크레딧뷰로(KCB)의 신용 점수입니다. 두 기관은 서로 다른 가중치를 사용하여 점수를 산출합니다. NICE는 과거의 연체 이력과 상환 성실도에 더 큰 비중을 두는 경향이 있으며, KCB는 현재의 부채 규모와 신용카드 이용 패턴 등 신용 형태를 더욱 비중 있게 다룹니다.</p>
 
-            <h3>3. DSR 규제와 레버리지의 한계</h3>
-            <p>강화된 DSR(총부채원리금상환비율) 규제 하에서 신용대출은 전략적인 선택이 필요합니다. 신용대출은 주택담보대출에 비해 만기가 짧게 설정되어 DSR 계산 시 불리하게 작용할 수 있습니다. 무리한 신용대출은 추후 내 집 마련을 위한 주담대 한도를 잠식할 수 있으므로, 전체 부채 포트폴리오를 고려한 접근이 필수적입니다.</p>
+            <p>따라서 단순히 빚이 없다고 해서 높은 점수가 나오는 것은 아닙니다. 적절한 수준의 신용 거래를 유지하면서 단 하루의 연체 없이 상환하는 습관이 고신용자로 가는 지름길입니다. 특히 최근에는 통신비 납부 내역이나 공공요금 결제 이력을 평가에 반영하는 대안 정보 활용이 늘고 있어, 사회초년생도 관리에 따라 충분히 우량 등급을 확보할 수 있습니다.</p>
 
-            <h3>4. 성공적인 상환을 위한 리스크 관리</h3>
-            <p>상환 방식(원리금균등, 원금균등, 만기일시)에 따라 총 이자 부담액은 수백만 원 이상 차이 날 수 있습니다. 또한, 중도상환수수료의 유무를 파악하여 목돈이 생겼을 때 원금을 우선 상환하는 것이 복리 이자의 늪에서 벗어나는 유일한 길입니다. 신용대출은 양날의 검과 같아서, 잘 쓰면 성장의 발판이 되지만 잘못 쓰면 신용 점수의 하락과 함께 장기적인 금융 단절을 초래할 수 있습니다.</p>
+            <h3>2. 금리 결정의 알고리즘: 기준금리와 가산금리</h3>
+            <p>대출 금리는 [기준금리 + 가산금리 - 우대금리]라는 복합적인 산식으로 결정됩니다. 기준금리는 은행의 자금 조달 비용인 코픽스(COFIX)나 금융채 금리를 따르는데, 이는 시장 상황에 따라 변동되므로 개인이 통제하기 어렵습니다. 하지만 가산금리와 우대금리는 차주의 노력에 따라 달라질 수 있습니다.</p>
 
-            <h3>5. 최신 금융 트렌드와 비대면 대출</h3>
-            <p>이제 영업점 방문 없이 5분 만에 대출이 실행되는 비대면 금융 시대입니다. 오픈뱅킹 서비스를 통해 여러 은행의 조건을 한눈에 비교하고, 가장 유리한 상품을 선택하는 것이 금융 소비자의 권리입니다. 머니파인더는 이러한 복잡한 데이터 사이에서 사용자가 최적의 선택을 할 수 있도록 정밀한 정보를 지속적으로 업데이트할 것입니다.</p>
+            <p>가산금리는 차주의 신용 리스크에 따라 은행이 붙이는 '위험 비용'입니다. 신용 점수를 높여 이 가산금리를 낮추는 것이 실질적인 이자 절감의 핵심입니다. 또한, 급여 이체, 신용카드 사용 실적, 앱 접속 빈도 등을 통해 부여되는 우대금리 혜택을 꼼꼼히 챙기면 연 0.5% 이상의 이자 차이를 만들어낼 수 있으며, 이는 대출 원금이 클수록 수백만 원의 차이로 이어집니다.</p>
+
+            <h3>3. DSR 규제와 가계 부채 최적화 전략</h3>
+            <p>2026년 현재 대한민국 금융 시장의 가장 강력한 잣대는 DSR(총부채원리금상환비율)입니다. 이는 연간 소득에서 주택담보대출, 신용대출, 자동차 할부 등 모든 부채의 원리금이 차지하는 비중을 제한하는 제도입니다. 보통 1금융권에서는 소득의 40% 이내로 엄격히 관리됩니다.</p>
+
+            <p>신용대출은 주담대에 비해 만기가 짧게 설정되어 DSR 계산 시 불리하게 작용하는 경우가 많습니다. 따라서 나중에 큰 규모의 주택담보대출을 받을 계획이 있다면, 소액 신용대출을 여러 건 보유하기보다 고금리 대출부터 하나로 통합하여 DSR 여유 한도를 확보해 두는 전략적 접근이 필수적입니다.</p>
+
+            <h3>4. 상환 방식에 따른 재무적 이익 비교</h3>
+            <p>상환 방식 선택은 이자 총액을 결정짓는 결정적 요소입니다. **원리금균등분할상환**은 매달 내는 돈이 일정하여 가계부 관리가 용이하지만, 초기에는 이자 비중이 높습니다. 반면 **원금균등분할상환**은 초기에 납부액이 크지만 전체 대출 기간 동안 지불하는 총 이자액은 가장 적습니다.</p>
+
+            <p>일명 마이너스 통장이라 불리는 **한도대출** 방식은 필요한 때만 쓰고 갚을 수 있어 유연하지만, 일반 신용대출보다 금리가 약 0.5%가량 높게 책정되는 경우가 많습니다. 본인이 목돈을 한꺼번에 상환할 계획인지, 아니면 수시로 입출금을 반복할 계획인지에 따라 상환 방식을 결정해야만 불필요한 금융 비용을 줄일 수 있습니다.</p>
+
+            <h3>5. 결론: 리스크 관리와 금융 문해력</h3>
+            <p>결국 신용대출은 '양날의 검'입니다. 생산적인 자산 투자나 긴급한 위기 극복의 도구가 될 수도 있지만, 계획 없는 소비를 위한 대출은 신용 점수의 하락과 함께 장기적인 경제적 고립을 초래합니다. 머니파인더는 사용자가 자신의 데이터를 직접 시뮬레이션하고, 방대한 금융 지식을 통해 스스로 최적의 선택을 내릴 수 있는 환경을 제공하는 데 최선을 다하겠습니다.</p>
         </article>
     </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-20 text-center">
-        <p class="text-2xl font-black text-white mb-4">머니파인더</p>
-        <p class="text-sm opacity-60">webcashing.shop | 금융 지식의 새로운 지평</p>
+    <footer class="bg-slate-900 text-slate-500 py-24 text-center">
+        <p class="text-3xl font-black text-white mb-6 tracking-tighter">머니파인더</p>
+        <p class="text-sm opacity-60 font-medium">성공적인 자산 관리를 위한 전문 데이터 플랫폼 | webcashing.shop</p>
+        <p class="mt-12 text-[11px] opacity-30 tracking-widest">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
