@@ -2,31 +2,90 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주택담보대출 가이드 v2.3 | 머니파인더</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>주택담보대출 완전 정복 가이드 | 머니파인더</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
-        body { background-color: #fcfdfe; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
-        .nav-link { padding: 1.25rem 0.5rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 4px solid transparent; }
-        .nav-link:hover { color: #059669; }
-        .nav-link.active { color: #059669; border-bottom: 4px solid #059669; }
-        .article-container { background: #ffffff; border-radius: 32px; padding: 6rem 5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; }
-        h1 { font-size: 3.5rem; font-weight: 900; color: #0f172a; margin-bottom: 2rem; letter-spacing: -0.06em; }
-        h2 { font-size: 3rem; font-weight: 900; color: #0f172a; margin-top: 8rem; margin-bottom: 3.5rem; line-height: 1.2; letter-spacing: -0.05em; }
-        h3 { font-size: 2.5rem; font-weight: 900; color: #059669; margin-top: 6rem; margin-bottom: 2.5rem; line-height: 1.3; background: #ecfdf5; padding: 1.5rem 2rem; border-radius: 16px; display: block; width: fit-content; }
-        p { font-size: 1.25rem; line-height: 2.2; margin-bottom: 4rem; color: #475569; text-align: justify; }
-        .calculator-box { background: linear-gradient(135deg, #065f46 0%, #064e3b 100%); border-radius: 28px; padding: 4rem; color: white; margin-bottom: 6rem; }
-        .highlight-box { background: #f0fdf4; border-left: 8px solid #059669; padding: 3rem; border-radius: 0 24px 24px 0; margin: 5rem 0; font-size: 1.3rem; line-height: 2; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        body { background-color: #ffffff; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; word-break: keep-all; }
+        
+        /* 네비게이션 가로 스크롤 */
+        .nav-scroll { display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+        
+        .nav-link { padding: 0.8rem 0.6rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 3px solid transparent; flex-shrink: 0; font-size: 0.9rem; }
+        .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; }
+
+        /* 레이아웃: 모바일 간격 압축 */
+        .main-container { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+        @media (min-width: 768px) { .main-container { padding: 4rem 2rem 10rem; } }
+        
+        /* 메인 타이틀 */
+        h1 { 
+            font-size: 1.5rem; 
+            font-weight: 900; 
+            color: #0f172a; 
+            margin-bottom: 1.25rem; 
+            line-height: 1.3; 
+            letter-spacing: -0.05em; 
+            display: block;
+        }
+        @media (min-width: 768px) { 
+            h1 { font-size: 3rem; margin-bottom: 3rem; } 
+        }
+
+        /* 소제목 디자인 */
+        .sub-headline { 
+            font-size: 1.25rem; 
+            font-weight: 900; 
+            color: #1d4ed8; 
+            background: #eff6ff; 
+            padding: 0.8rem 1rem; 
+            border-radius: 10px; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1.25rem; 
+            line-height: 1.2; 
+            letter-spacing: -0.02em; 
+            display: block; 
+            width: fit-content;
+            border-left: 6px solid #1d4ed8;
+        }
+        @media (min-width: 768px) {
+            .sub-headline { font-size: 1.875rem; border-radius: 16px; padding: 1.25rem 1.75rem; margin-top: 5rem; margin-bottom: 2.5rem; }
+        }
+        
+        /* 본문 폰트 및 줄간격 최적화 */
+        p { 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            margin-bottom: 1.25rem; 
+            color: #475569; 
+            text-align: justify; 
+        }
+        @media (min-width: 768px) {
+            p { font-size: 1.1rem; line-height: 2; margin-bottom: 3rem; } 
+        }
+
+        ul { margin-bottom: 1.5rem; list-style-type: disc; padding-left: 1.25rem; color: #475569; }
+        @media (min-width: 768px) { ul { margin-bottom: 3rem; } }
+
+        li { margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.5; }
+        @media (min-width: 768px) { li { margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.8; } }
+
+        strong { color: #1e293b; font-weight: 700; }
+        .highlight-text { color: #1d4ed8; font-weight: 800; }
     </style>
 </head>
 <body>
 
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center overflow-x-auto no-scrollbar">
-            <a href="index.html" class="text-3xl font-black text-emerald-700 tracking-tighter shrink-0">머니파인더</a>
-            <nav class="flex space-x-10 text-base font-bold">
+        <div class="max-w-7xl mx-auto px-4 py-2 md:py-0 md:h-20 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center justify-center w-full md:w-auto py-1 md:py-0">
+                <div class="text-2xl md:text-3xl font-black text-blue-700 tracking-tighter shrink-0 cursor-pointer" onclick="location.href='index.html'">머니파인더</div>
+            </div>
+            <nav class="nav-scroll w-full md:w-auto mt-1 md:mt-0 border-t md:border-t-0 pt-1 md:pt-0">
+                <a href="calculator.html" class="nav-link">대출계산기</a>
                 <a href="index.html" class="nav-link">신용대출</a>
                 <a href="mortgage.html" class="nav-link active">주택담보대출</a>
                 <a href="rent.html" class="nav-link">전월세 대출</a>
@@ -37,80 +96,33 @@
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-24">
-        <h1>주택담보대출 완벽 분석</h1>
-        <p class="text-3xl text-slate-400 font-medium mb-24 tracking-tighter">내 집 마련을 위한 가장 거대한 금융 로드맵</p>
+    <div class="main-container">
+        <article>
+            <h1>주택담보대출 완전 정복 가이드: (2026년 최신 기준)</h1>
+            
+            <p>
+                주택담보대출은 아파트·단독주택·빌라 등 부동산을 담보로 제공하고 받는 상품입니다.<br>
+                신용대출과 달리 금리가 낮고 한도가 크며 상환 기간이 길다는 장점이 있습니다.<br>
+                2026년 스트레스 DSR 3단계와 LTV 규제가 강화되면서 실제 대출 한도가 줄었지만, 내집 마련·생활안정자금·전세보증금 반환 목적으로 여전히 가장 많이 이용되는 대출입니다.<br>
+                전체 주택담보대출 잔액은 1,000조 원을 초과하고 있습니다.
+            </p>
 
-        <div class="calculator-box shadow-2xl text-center">
-            <h4 class="text-emerald-200 font-bold mb-10 text-xl uppercase tracking-[0.2em]">Mortgage Simulation</h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-left">
-                <div class="flex flex-col">
-                    <label class="text-sm font-bold opacity-70 mb-4 uppercase">대출 원금 (원)</label>
-                    <input type="number" id="amt" class="p-5 rounded-2xl bg-white/10 border border-white/20 text-white focus:bg-white focus:text-emerald-900 outline-none font-bold text-2xl transition-all" placeholder="0">
-                </div>
-                <div class="flex flex-col">
-                    <label class="text-sm font-bold opacity-70 mb-4 uppercase">연 이자율 (%)</label>
-                    <input type="number" id="rate" step="0.1" class="p-5 rounded-2xl bg-white/10 border border-white/20 text-white focus:bg-white focus:text-emerald-900 outline-none font-bold text-2xl transition-all" placeholder="0.0">
-                </div>
-                <div class="flex flex-col">
-                    <label class="text-sm font-bold opacity-70 mb-4 uppercase">상환 기간 (개월)</label>
-                    <input type="number" id="months" class="p-5 rounded-2xl bg-white/10 border border-white/20 text-white focus:bg-white focus:text-emerald-900 outline-none font-bold text-2xl transition-all" placeholder="0">
-                </div>
-            </div>
-            <button onclick="doCalc()" class="w-full py-7 bg-white text-emerald-900 text-3xl font-black rounded-2xl hover:bg-emerald-50 transition shadow-xl">분석 결과 보기</button>
-            <div id="res" class="hidden mt-12 p-10 bg-white/5 rounded-3xl border border-white/20">
-                <p class="text-lg font-bold text-emerald-200 mb-3 uppercase tracking-widest">매월 상환 예정액</p>
-                <p id="res-m" class="text-6xl font-black text-white tracking-tighter">-</p>
-            </div>
-        </div>
+            <div class="sub-headline">1. 주택담보대출이란?</div>
+            <p>
+                주택담보대출은 담보로 제공한 부동산의 감정평가액을 기준으로 금융기관이 대출해주는 상품입니다.<br>
+                신용대출에 비해 절차가 복잡하고 기간이 길지만(1~4주 소요), 금리가 낮고 한도가 크며 장기 상환이 가능합니다.<br>
+                2026년 규제지역 LTV 40% 적용 등으로 실수요자 중심으로 운영되고 있습니다.
+            </p>
 
-        <article class="article-container">
-            <h2>1. 주택담보대출의 거시적 본질</h2>
-            <p>주택담보대출(주담대)은 현대 사회에서 개인이 체결하는 가장 거대하고 복잡한 금융 계약입니다. 단순히 부족한 자금을 메우는 것을 넘어, '부동산'이라는 실물 자산을 담보로 미래의 소득을 현재로 소환하는 고도의 자산 운용 전략입니다. 주담대는 수십 년의 상환 기간을 전제로 하므로, 설계 단계의 작은 차이가 은퇴 후 자산의 크기를 수억 원 이상 바꿀 수 있습니다.</p>
+            <div class="sub-headline">2. 주택담보대출 주요 상품 종류</div>
+            <p>주택담보대출은 금융권·금리유형·정부지원·용도에 따라 다양합니다.</p>
+            <ul>
+                <li><strong>금융권별:</strong> 1금융권(저금리·엄격), 2금융권(고금리·완화)</li>
+                <li><strong>금리유형:</strong> 변동금리, 고정금리, 혼합금리</li>
+                <li><strong>정부지원:</strong> 디딤돌·보금자리론·신생아특례</li>
+                <li><strong>용도별:</strong> 주택구입자금, 생활안정자금, 임차보증금</li>
+            </ul>
 
-            <p>머니파인더는 사용자가 단순히 빚을 지는 것을 넘어, 국가 정책과 금리 기조를 활용해 자신의 순자산을 효율적으로 늘릴 수 있도록 돕고자 합니다. 본 가이드는 주담대의 원리부터 최신 정책금융 상품까지 3,500자 이상의 초밀도 전문 지식을 포함하고 있습니다.</p>
-
-            <h3>2. LTV, DTI, DSR 규제의 심층 이해</h3>
-            <p>대한민국 주택 담보 대출 시장을 지배하는 세 가지 핵심 지표는 LTV, DTI, DSR입니다. **LTV(주택담보대출비율)**는 집값 대비 대출 가능한 물리적 한도를 정하며, 이는 초기 동원 자본의 규모를 결정합니다. **DTI(총부채상환비율)**와 **DSR(총부채원리금상환비율)**은 차주의 미래 소득을 근거로 상환 능력을 평가합니다.</p>
-
-            <p>특히 DSR은 가장 강력한 규제 수단입니다. 주담대 원리금뿐만 아니라 신용대출 등 모든 부채를 합산하여 소득의 일정 수준(현재 40%)을 넘지 못하게 차단하므로, 소득이 낮거나 부채가 많은 차주에게는 가장 큰 장벽이 됩니다. 머니파인더 시뮬레이터는 사용자가 이러한 규제 한도 내에서 최적의 한도를 찾을 수 있도록 정교한 계산을 지원합니다.</p>
-
-            <div class="highlight-box">
-                <strong>핵심 팁:</strong> 생애 최초 주택 구입자나 신혼부부는 LTV가 최대 80%까지 완화되기도 합니다. 본인의 특수 상황을 반영하여 정책적 우대를 받을 수 있는지 반드시 먼저 확인해야 합니다.
-            </div>
-
-            <h3>3. 정책 금융 상품의 1순위 검토</h3>
-            <p>시중 은행의 일반 대출을 알아보기 전, 정부 지원 정책 상품을 1순위로 검토하는 것은 이자 비용 절감의 기본입니다. **디딤돌 대출**은 연 2~3%대의 초저금리를 제공하며, **보금자리론**은 비교적 완화된 자격 조건으로 장기 고정금리를 지원합니다.</p>
-
-            <p>특히 최근 도입된 **신생아 특례 대출**은 출산 가구에게 시중 금리보다 현저히 낮은 1%대 금리를 제공하여 주거 비용을 획기적으로 낮춰 줍니다. 정책 상품들은 소득 요건이나 주택 가격 제한이 까다롭지만, 조건만 충족한다면 수십 년간 수억 원의 이자를 아낄 수 있는 국가적 혜택입니다.</p>
-
-            <h3>4. 금리 유형과 상환 방식의 전략적 선택</h3>
-            <p>금리 유형은 고정, 변동, 그리고 주기형(5년 고정 후 변동)으로 나뉩니다. 금리 인상기에는 고정금리가 유리하지만, 초기 금리는 변동금리가 저렴할 수 있습니다. 상환 방식 역시 원리금균등과 원금균등 중 본인의 자금 흐름에 따라 결정해야 합니다. 원금균등은 초기 부담은 크지만 전체 이자가 가장 적어 장기적으로 유리합니다.</p>
-
-            <h3>5. 결론: 부채 관리도 자산 운용이다</h3>
-            <p>결국 주담대는 '집을 사는 법'이 아니라 '금융을 다루는 법'입니다. 머니파인더와 함께 자신의 데이터를 정밀하게 시뮬레이션하고 금융의 원리를 공부하십시오. 주거의 안정이 곧 자산의 안정임을 잊지 마십시오. 우리는 사용자의 성공적인 내 집 마련을 위해 가장 신뢰할 수 있는 데이터를 지속적으로 업데이트하겠습니다.</p>
-        </article>
-    </main>
-
-    <footer class="bg-slate-900 text-slate-500 py-24 text-center">
-        <p class="text-3xl font-black text-white mb-6 tracking-tighter">머니파인더</p>
-        <p class="text-sm opacity-60 font-medium">webcashing.shop | 내 집 마련의 꿈을 지탱하는 데이터 파트너</p>
-        <p class="mt-12 text-[11px] opacity-30 tracking-widest">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <script>
-        function doCalc() {
-            const P = parseFloat(document.getElementById('amt').value);
-            const rate = parseFloat(document.getElementById('rate').value);
-            const n = parseFloat(document.getElementById('months').value);
-            if (!P || isNaN(rate) || !n) return alert("정보를 정확히 입력하세요.");
-            const r = (rate / 100) / 12;
-            let m;
-            if (r === 0) m = P / n;
-            else m = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            document.getElementById('res-m').innerText = Math.round(m).toLocaleString() + " 원";
-            document.getElementById('res').classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
+            <div class="sub-headline">3. 1금융권 취급 금융사 및 특징</div>
+            <p>
+                1
