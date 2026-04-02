@@ -3,60 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>머니파인더 | AI 기반 스마트 대출 가이드</title>
+    <title>머니파인더 | 스마트 금융 AI 가이드</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         html { scroll-behavior: smooth; }
-        body { background-color: #f8fafc; }
-        .nav-link { transition: all 0.2s; border-bottom: 3px solid transparent; }
+        body { background-color: #f8fafc; color: #1e293b; }
+        .nav-link { transition: all 0.2s; border-bottom: 3px solid transparent; cursor: pointer; }
         .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; font-weight: 900; }
-        .ai-card { background: #ffffff; border-radius: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); overflow: hidden; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: slideUp 0.4s ease-out; }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .ai-card { background: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
         .ai-badge { background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="text-slate-800 font-sans">
+<body>
 
     <header class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
             <div class="text-3xl font-black text-blue-700 tracking-tighter cursor-pointer" onclick="location.reload()">
                 머니파인더
             </div>
-            
             <nav class="hidden lg:flex space-x-10 text-base font-bold text-slate-500">
-                <button onclick="showLoan('credit')" class="nav-link py-6 px-1 active" id="btn-credit">신용대출</button>
-                <button onclick="showLoan('mortgage')" class="nav-link py-6 px-1" id="btn-mortgage">주택담보대출</button>
-                <button onclick="showLoan('rent')" class="nav-link py-6 px-1" id="btn-rent">전월세 대출</button>
-                <button onclick="showLoan('car')" class="nav-link py-6 px-1" id="btn-car">자동차담보대출</button>
+                <div onclick="showLoan('credit')" class="nav-link py-6 px-1 active" id="btn-credit">신용대출</div>
+                <div onclick="showLoan('mortgage')" class="nav-link py-6 px-1" id="btn-mortgage">주택담보대출</div>
+                <div onclick="showLoan('rent')" class="nav-link py-6 px-1" id="btn-rent">전월세 대출</div>
+                <div onclick="showLoan('car')" class="nav-link py-6 px-1" id="btn-car">자동차담보대출</div>
             </nav>
         </div>
     </header>
 
     <main class="max-w-4xl mx-auto px-6 py-10">
         
-        <section class="ai-card p-10 mb-10 border border-slate-100">
+        <section class="ai-card p-8 md:p-10 mb-10 border border-slate-100">
             <div class="mb-8">
-                <h2 id="loan-title" class="text-3xl font-black text-slate-900 mb-2 tracking-tight">신용대출 상환 시뮬레이션</h2>
-                <p id="loan-desc" class="text-slate-500 font-medium">복잡한 조건 없이 한도와 이자를 즉시 계산해 보세요.</p>
+                <h2 id="loan-title" class="text-3xl font-black text-slate-900 mb-2">신용대출 상환 시뮬레이션</h2>
+                <p id="loan-desc" class="text-slate-500 font-medium">한도와 이자를 즉시 계산하고 AI 분석 결과를 확인하세요.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">대출 금액 (원)</label>
-                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none" placeholder="예: 30000000">
+                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 30000000">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">연 이자율 (%)</label>
-                    <input type="number" id="interest" step="0.01" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none" placeholder="예: 5.5">
+                    <input type="number" id="interest" step="0.01" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 5.5">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">대출 기간 (개월)</label>
-                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none" placeholder="예: 12">
+                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 12">
                 </div>
             </div>
 
@@ -64,18 +59,4 @@
                 상환 금액 계산하기
             </button>
 
-            <div id="result-box" class="hidden mt-10 pt-10 border-t border-slate-100">
-                <div class="grid grid-cols-2 gap-4 text-center">
-                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                        <p class="text-xs font-bold text-blue-600 mb-1">매월 상환액</p>
-                        <p id="monthlyPay" class="text-2xl font-black text-blue-900">-</p>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
-                        <p class="text-xs font-bold text-red-600 mb-1">총 대출 이자</p>
-                        <p id="totalInterest" class="text-2xl font-black text-red-900">-</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div id="ai-overview" class="ai-card p-10 border border
+            <div id="result-box
