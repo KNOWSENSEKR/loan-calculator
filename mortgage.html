@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주택담보대출 완벽 가이드 v2.0 | 머니파인더</title>
+    <title>주택담보대출 완벽 가이드 v2.1 | 머니파인더</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
-        body { background-color: #f8fafc; color: #1e293b; font-family: 'Pretendard', sans-serif; line-height: 1.8; }
+        body { background-color: #f8fafc; color: #1e293b; font-family: 'Pretendard', sans-serif; line-height: 1.9; }
         .nav-link { padding: 1.25rem 0.5rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 4px solid transparent; }
         .nav-link:hover { color: #1d4ed8; }
-        /* 주택담보대출 메뉴만 활성화(파란색) 표시 */
         .nav-link.active { color: #1d4ed8; border-bottom: 4px solid #1d4ed8; }
-        .content-card { background: #ffffff; border-radius: 28px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h2 { font-size: 2.25rem; font-weight: 900; color: #0f172a; margin: 3rem 0 1.5rem; }
-        h3 { font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 2.5rem 0 1.25rem; border-left: 6px solid #1d4ed8; padding-left: 1rem; }
-        p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #475569; text-align: justify; }
-        .calculator-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 24px; padding: 2.5rem; border: 1px solid #bbf7d0; margin-bottom: 3rem; }
+        .content-card { background: #ffffff; border-radius: 28px; padding: 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+        h2 { font-size: 2.5rem; font-weight: 900; color: #0f172a; margin-top: 4rem; margin-bottom: 2rem; letter-spacing: -0.05em; }
+        h3 { font-size: 1.85rem; font-weight: 800; color: #1e293b; margin-top: 3.5rem; margin-bottom: 1.5rem; border-left: 8px solid #059669; padding-left: 1.5rem; }
+        p { margin-bottom: 2rem; font-size: 1.15rem; color: #475569; text-align: justify; line-height: 2; }
+        .calculator-box { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-radius: 24px; padding: 3rem; border: 1px solid #a7f3d0; margin-bottom: 4rem; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
@@ -36,49 +35,68 @@
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">주택담보대출 가이드</h1>
-        <p class="text-xl text-slate-500 mb-12">내 집 마련을 위한 가장 거대한 금융 기둥, 완벽 분석</p>
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tight">주택담보대출 상세 가이드</h1>
+        <p class="text-2xl text-slate-500 mb-16 font-medium">내 집 마련을 위한 가장 거대한 금융 기둥과 정부 정책 분석</p>
 
-        <div class="calculator-box shadow-lg">
-            <h4 class="text-green-800 font-black mb-6 text-xl">주택담보대출 상환 시뮬레이션</h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <input type="number" id="amt" class="p-4 rounded-xl border-2 border-white focus:border-green-500 outline-none font-bold" placeholder="대출 원금 (원)">
-                <input type="number" id="rate" step="0.1" class="p-4 rounded-xl border-2 border-white focus:border-green-500 outline-none font-bold" placeholder="연 이자율 (%)">
-                <input type="number" id="months" class="p-4 rounded-xl border-2 border-white focus:border-green-500 outline-none font-bold" placeholder="기간 (개월)">
+        <div class="calculator-box shadow-xl">
+            <h4 class="text-emerald-800 font-black mb-8 text-2xl">장기 주택담보대출 상환 분석기</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-emerald-600 mb-2 uppercase">대출 원금 (원)</label>
+                    <input type="number" id="amt" class="p-4 rounded-xl border-2 border-white focus:border-emerald-500 outline-none font-bold text-lg" placeholder="예: 500000000">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-emerald-600 mb-2 uppercase">연 이자율 (%)</label>
+                    <input type="number" id="rate" step="0.1" class="p-4 rounded-xl border-2 border-white focus:border-emerald-500 outline-none font-bold text-lg" placeholder="예: 4.2">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-xs font-bold text-emerald-600 mb-2 uppercase">상환 기간 (개월)</label>
+                    <input type="number" id="months" class="p-4 rounded-xl border-2 border-white focus:border-emerald-500 outline-none font-bold text-lg" placeholder="예: 360">
+                </div>
             </div>
-            <button onclick="doCalc()" class="w-full py-5 bg-green-700 text-white text-xl font-black rounded-xl hover:bg-green-800 transition shadow-lg">상환 금액 분석하기</button>
-            <div id="res" class="hidden mt-8 p-6 bg-white rounded-2xl border-2 border-green-200 text-center">
-                <p class="text-sm font-bold text-green-600 mb-1 uppercase">매월 상환액: <span id="res-m" class="text-2xl text-green-900 ml-2">-</span></p>
+            <button onclick="doCalc()" class="w-full py-6 bg-emerald-700 text-white text-2xl font-black rounded-2xl hover:bg-emerald-800 transition shadow-2xl active:scale-95">분석 결과 보기</button>
+            <div id="res" class="hidden mt-10 p-8 bg-white rounded-3xl border-2 border-emerald-200 text-center">
+                <p class="text-lg font-bold text-emerald-600 mb-2 uppercase tracking-widest">매월 상환액</p>
+                <p id="res-m" class="text-5xl font-black text-emerald-900 tracking-tighter">-</p>
             </div>
         </div>
 
         <article class="content-card">
-            <h2>주택담보대출의 본질과 국가 경제적 의미</h2>
-            <p>주택담보대출(이하 주담대)은 개인이 일생 동안 경험하는 가장 거대한 금융 행위입니다. 이는 단순한 자금 차입을 넘어, 실거주 주택이라는 실물 자산을 담보로 미래의 소득을 현재의 가치로 변환하여 '내 집 마련'이라는 주거 안정을 달성하는 과정입니다. 국가적으로도 주담대 규모는 가계 부채의 핵심 지표이며, 부동산 시장의 유동성을 조절하는 가장 강력한 수단입니다.</p>
+            <h2>주택담보대출의 거시적 본질과 개인의 자산 형성</h2>
+            <p>주택담보대출(이하 주담대)은 개인이 평생에 걸쳐 경험하는 가장 거대하고 중요한 금융 계약입니다. 이는 단순히 자금을 빌리는 차원을 넘어, '주거'라는 인간의 기본권을 확보하고 인플레이션 환경에서 자산의 실질 가치를 방어하는 핵심적인 재무 전략입니다. 주담대는 수십 년의 상환 기간을 전제로 하기에, 단 0.1%의 금리 차이만으로도 전체 이자 납부액이 수천만 원 이상 벌어지는 특징이 있습니다.</p>
 
-            <h3>1. 주담대 3대 규제 지표: LTV, DTI, DSR 완전 정복</h3>
-            <p>대한민국에서 주담대를 받기 위해 가장 먼저 마주하는 장벽은 정부의 가계부채 관리 정책입니다. **LTV(주택담보대출비율)**는 주택의 시장 가치 대비 몇 %까지 빌려줄 것인가를 결정합니다. 지역(규제지역 여부)과 주택 가격에 따라 40~70% 사이에서 결정되며, 이는 초기 자본금 산출의 핵심이 됩니다.</p>
-            <p>**DTI(총부채상환비율)**와 **DSR(총부채원리금상환비율)**은 차주의 상환 능력을 평가합니다. 특히 DSR은 주담대뿐만 아니라 신용대출, 자동차 할부 등 모든 부채의 원리금을 합산하여 소득의 일정 비율(현재 40%) 이내로 제한하는 가장 강력한 규제입니다. 소득이 명확하지 않거나 부채가 많은 차주는 LTV가 여유로워도 DSR에 걸려 대출이 거절될 수 있습니다.</p>
+            <p>최근에는 전 세계적인 고금리 기조와 정부의 가계부채 관리 정책이 맞물려 주담대 시장의 지형이 급격히 변화하고 있습니다. 사용자는 단순한 대출 신청을 넘어 LTV, DTI, DSR로 대표되는 3대 규제 지표를 정확히 이해하고, 자신의 소득과 생애 주기에 최적화된 상품을 설계해야 합니다. 머니파인더는 이러한 정밀한 자산 설계를 돕기 위해 전문적인 분석 데이터를 제공합니다.</p>
 
-            <h3>2. 금리 선택의 전략: 고정 vs 변동 vs 주기형</h3>
-            <p>금리 유형 선택은 수십 년의 상환 기간 동안 수천만 원의 이자 차이를 만듭니다. **고정금리**는 향후 금리 상승기에서 안정성을 보장하지만, 초기 금리가 상대적으로 높습니다. **변동금리**는 초기 금리는 낮지만 시장 상황에 따라 월 납부액이 널뛰는 리스크가 있습니다.</p>
-            <p>최근에는 5년 동안 고정된 후 변동으로 전환되는 **주기형(혼합형) 금리**가 대세입니다. 정부에서도 가계 부채의 질적 개선을 위해 주기형 상품에 가산금리 혜택을 주는 등 적극적으로 장려하고 있습니다. 자신의 자금 계획이 5년 이내 상환인지, 혹은 30년 장기 보유인지에 따라 선택이 달라져야 합니다.</p>
+            <h3>1. LTV, DTI, DSR: 주담대를 결정하는 3대 절대 기준</h3>
+            <p>**LTV(주택담보대출비율)**는 주택의 시장 가치 대비 대출 가능한 최대 금액을 결정합니다. 지역별 규제 수위에 따라 40%에서 70% 사이로 결정되며, 이는 초기 동원 가능한 자기자본의 규모를 결정짓는 첫 번째 관문입니다.</p>
 
-            <h3>3. 정책 금융 상품의 우선순위 활용</h3>
-            <p>시중은행의 문을 두드리기 전, 반드시 정부 지원 상품을 체크해야 합니다. **디딤돌 대출**은 무주택 서민을 위해 연 2~3%대의 초저금리를 제공하며, **보금자리론**은 비교적 완화된 자격 조건으로 장기 고정금리를 지원합니다. 특히 최근 도입된 **신생아 특례 대출**은 출산 가구에게 파격적인 금리 혜택을 주어 주거 비용을 획기적으로 낮춰줍니다. 자격 요건(소득, 주택 가격 등)만 충족된다면 정책 상품이 언제나 1순위입니다.</p>
+            <p>**DTI(총부채상환비율)**와 **DSR(총부채원리금상환비율)**은 차주의 소득 대비 원리금 상환액 비중을 나타냅니다. 특히 DSR은 가장 강력한 규제 수단으로, 주담대뿐만 아니라 신용대출 등 모든 부채의 원리금을 합산하여 소득의 일정 수준(현재 40%)을 넘지 못하게 차단합니다. 소득이 명확하지 않은 자영업자나 부채가 많은 차주는 LTV가 여유로워도 DSR 한도에 걸려 대출이 거절될 수 있음을 명시해야 합니다.</p>
 
-            <h3>4. 상환 방식에 따른 이자 비용의 차이</h3>
-            <p>원금균등상환, 원리금균등상환, 체증식 상환 중 본인에게 맞는 방식을 골라야 합니다. **원리금균등**은 매월 내는 돈이 일정해 예산 수립에 좋지만 전체 이자가 다소 높습니다. **원금균등**은 초기 부담은 크지만 시간이 갈수록 이자가 급격히 줄어들어 전체 지출을 최소화합니다. **체증식**은 청년층에게 초기 부담을 줄여주는 대신 후반부 부담이 커지는 구조로, 미래 소득 상승이 예상되는 사회초년생에게 유리합니다.</p>
+            <h3>2. 금리 유형의 전략적 선택: 고정 vs 변동 vs 주기형</h3>
+            <p>주담대는 상환 기간이 길기 때문에 금리 유형 선택이 재무 상태에 지대한 영향을 미칩니다. **고정금리**는 금리 상승기에서 안정성을 제공하지만 초기 금리가 높습니다. 반면 **변동금리**는 초기 비용은 저렴할 수 있으나 시장 금리 급등 시 상환액이 폭증하여 가계 경제를 위협할 리스크가 있습니다.</p>
 
-            <h3>5. 대출 실행 후 사후 관리와 갈아타기</h3>
-            <p>대출을 받았다고 끝이 아닙니다. 보통 3년이 지나면 **중도상환수수료**가 면제됩니다. 이때 시장 금리가 낮아졌다면 '온라인 대환대출 플랫폼'을 통해 더 낮은 금리의 은행으로 갈아타기를 시도해야 합니다. 단 0.1%의 금리 차이라도 30년이라는 기간을 곱하면 외제차 한 대 값의 이자를 아낄 수 있기 때문입니다. 머니파인더는 사용자가 최적의 갈아타기 타이밀을 잡을 수 있도록 실시간 금융 트렌드를 분석합니다.</p>
+            <p>최근에는 5년 동안 고정된 후 변동으로 바뀌는 **주기형(혼합형) 금리**가 정책적으로 장려되고 있습니다. 정부는 가계 부채의 질적 개선을 위해 주기형 상품에 가산금리 인하 혜택을 주는 등 유인책을 사용하고 있습니다. 사용자는 자신의 자금 계획이 5년 이내의 단기 상환인지, 혹은 30년 이상의 장기 보유인지에 따라 금리 유형을 전략적으로 선택해야 합니다.</p>
+
+            <h3>3. 정부 지원 정책 금융 상품의 우선 활용 가이드</h3>
+            <p>시중 은행의 문을 두드리기 전, 반드시 정부 지원 정책 상품을 1순위로 검토해야 합니다. **디딤돌 대출**은 무주택 서민을 위해 연 2~3%대의 파격적인 금리를 제공하며, **보금자리론**은 장기 고정금리 혜택을 통해 상환액의 예측 가능성을 높여줍니다.</p>
+
+            <p>특히 **신생아 특례 대출**과 같은 최신 정책 상품은 출산 가구에게 시중 금리보다 현저히 낮은 1%대 금리를 제공하여 주거 비용을 획기적으로 절감해 줍니다. 이러한 정책 상품들은 소득 요건이나 주택 가격 제한이 까다롭지만, 조건만 충족한다면 어떤 민간 상품보다도 경제적 가치가 큽니다.</p>
+
+            <h3>4. 상환 방식과 중도상환수수료의 재무적 함수</h3>
+            <p>원리금균등, 원금균등, 체증식 상환 중 본인에게 맞는 상환 스케줄을 짜야 합니다. **원리금균등**은 매월 일정액을 내므로 계획 수립에 좋고, **원금균등**은 초기 부담은 크지만 전체 이자가 가장 적습니다. **체증식**은 청년층의 초기 부담을 줄여주지만 후반부 이자 부담이 커지므로 미래 소득 상승이 확실한 경우에만 추천됩니다.</p>
+
+            <p>또한, 대출 후 3년이 지나면 대개 면제되는 **중도상환수수료** 시점을 파악하는 것이 중요합니다. 금리가 하락하는 시기에 더 낮은 금리의 은행으로 갈아타기를 할 때, 이 수수료 면제 여부가 실질적인 대환의 수익성을 결정짓기 때문입니다. 머니파인더의 계산기를 통해 대환 시 이자 절감액과 수수료를 비교해 보는 과정이 반드시 필요합니다.</p>
+
+            <h3>5. 결론: 장기적 관점의 부채 관리</h3>
+            <p>주택담보대출은 한 번 실행하면 되돌리기 어려운 장기적인 약정입니다. 단순히 '빌릴 수 있는 최대 금액'을 쫓기보다, 자신의 가계가 감당할 수 있는 상환 능력을 이성적으로 판단해야 합니다. 머니파인더는 사용자가 실시간 데이터 분석을 통해 가장 안전하고 경제적인 내 집 마련의 로드맵을 그릴 수 있도록 기술적인 지원을 아끼지 않겠습니다.</p>
         </article>
     </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-20 text-center">
-        <p class="text-2xl font-black text-white mb-4">머니파인더</p>
-        <p class="text-sm opacity-60">webcashing.shop | 성공적인 내 집 마련의 동반자</p>
+    <footer class="bg-slate-900 text-slate-500 py-24 text-center">
+        <p class="text-3xl font-black text-white mb-6 tracking-tighter">머니파인더</p>
+        <p class="text-sm opacity-60 font-medium">webcashing.shop | 내 집 마련의 꿈을 지탱하는 데이터 파트너</p>
+        <p class="mt-12 text-[11px] opacity-30 tracking-widest">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
