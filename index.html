@@ -8,9 +8,14 @@
     <style>
         body { background-color: #f8fafc; }
         .result-card { transition: all 0.3s ease; }
-        .result-card:hover { transform: translateY(-5px); }
+        /* 결과가 나타날 때 애니메이션 효과 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
     </style>
-    </head>
+</head>
 <body class="text-slate-800 font-sans">
 
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
@@ -35,26 +40,98 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="space-y-2">
                     <label class="block text-sm font-black text-slate-700">대출 원금 (원)</label>
-                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 50,000,000">
+                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition" placeholder="예: 50000000">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-sm font-black text-slate-700">연 이자율 (%)</label>
-                    <input type="number" id="interest" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 4.5">
+                    <input type="number" id="interest" step="0.1" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition" placeholder="예: 4.5">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-sm font-black text-slate-700">대출 기간 (개월)</label>
-                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition" placeholder="예: 36">
+                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition" placeholder="예: 12">
                 </div>
             </div>
 
-            <button onclick="calculateLoan()" class="w-full mt-10 bg-blue-800 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:bg-blue-900 hover:shadow-2xl transform active:scale-95 transition-all">
+            <button onclick="calculateLoan()" class="w-full mt-10 bg-blue-700 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:bg-blue-800 transform active:scale-95 transition-all">
                 상환 금액 계산하기
             </button>
 
-            <div id="result-box" class="hidden mt-12 pt-10 border-t-2 border-dashed border-slate-200">
+            <div id="result-box" class="hidden mt-12 pt-10 border-t-2 border-dashed border-slate-200 animate-fadeIn">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="result-card bg-blue-50 p-8 rounded-2xl border border-blue-100 text-center">
+                    <div class="result-card bg-blue-50 p-8 rounded-2xl border border-blue-100 text-center shadow-inner">
                         <p class="text-sm font-bold text-blue-600 mb-2 uppercase tracking-widest">매월 상환액</p>
                         <p id="monthlyPay" class="text-4xl font-black text-blue-900 tracking-tight">-</p>
                     </div>
-                    <div class="result-card bg-red-50 p
+                    <div class="result-card bg-red-50 p-8 rounded-2xl border border-red-100 text-center shadow-inner">
+                        <p class="text-sm font-bold text-red-600 mb-2 uppercase tracking-widest">총 납부 이자</p>
+                        <p id="totalInterest" class="text-4xl font-black text-red-900 tracking-tight">-</p>
+                    </div>
+                </div>
+                <div class="mt-6 p-5 bg-slate-100 rounded-2xl text-center">
+                    <p class="text-slate-600 font-medium">총 상환 금액 (원금+이자): <span id="totalPay" class="font-black text-slate-900 text-lg ml-2">-</span></p>
+                </div>
+            </div>
+        </section>
+
+        <article id="guide" class="prose max-w-none text-slate-700">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">현명한 대출 관리를 위한 webcashing.shop 가이드</h2>
+            <p class="mb-4">효율적인 자산 관리는 자신의 부채를 정확히 파악하는 것에서 시작합니다. 원리금균등상환 방식은 매월 일정한 금액을 납부하므로 가계 지출의 예측 가능성을 높여주는 장점이 있습니다.</p>
+            <p class="mb-10">본 계산기는 사용자가 입력한 원금, 이율, 기간을 바탕으로 수학적 공식을 적용하여 산출됩니다. 대출 실행 전 반드시 상환 능력을 점검하시기 바랍니다.</p>
+        </article>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 py-12">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p class="text-slate-300 font-bold mb-2 text-xl">webcashing.shop</p>
+            <p class="text-xs">&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateLoan() {
+            // 1. 입력값 가져오기
+            const amountInput = document.getElementById('amount');
+            const interestInput = document.getElementById('interest');
+            const termInput = document.getElementById('term');
+
+            const P = parseFloat(amountInput.value); // 대출 원금
+            const annualRate = parseFloat(interestInput.value); // 연 이자율
+            const n = parseFloat(termInput.value); // 대출 기간(개월)
+
+            // 2. 유효성 검사 (숫자가 아니거나 비어있으면 경고)
+            if (isNaN(P) || isNaN(annualRate) || isNaN(n) || P <= 0 || annualRate < 0 || n <= 0) {
+                alert("정확한 대출 정보(숫자)를 입력해 주세요.");
+                return;
+            }
+
+            // 3. 원리금 균등 상환 공식 적용
+            // 월 이자율 r = (연이자율 / 100) / 12
+            const r = (annualRate / 100) / 12;
+            
+            let monthly;
+            if (r === 0) {
+                // 무이자일 경우
+                monthly = P / n;
+            } else {
+                // 원리금 균등상환 공식: M = P * r * (1+r)^n / ((1+r)^n - 1)
+                monthly = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            }
+
+            const totalPayment = monthly * n;
+            const totalInterest = totalPayment - P;
+
+            // 4. 결과 화면에 반영하기
+            document.getElementById('monthlyPay').innerText = Math.floor(monthly).toLocaleString() + " 원";
+            document.getElementById('totalInterest').innerText = Math.floor(totalInterest).toLocaleString() + " 원";
+            document.getElementById('totalPay').innerText = Math.floor(totalPayment).toLocaleString() + " 원";
+
+            // 5. 숨겨진 결과창 보여주기
+            const resultBox = document.getElementById('result-box');
+            resultBox.classList.remove('hidden');
+            
+            // 결과창으로 자동 스크롤
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
