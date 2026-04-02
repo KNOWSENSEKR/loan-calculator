@@ -8,8 +8,8 @@
     <style>
         html { scroll-behavior: smooth; }
         body { background-color: #f8fafc; color: #1e293b; }
-        .nav-link { transition: all 0.2s; border-bottom: 3px solid transparent; cursor: pointer; }
-        .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; font-weight: 900; }
+        .nav-btn { transition: all 0.2s; border-bottom: 3px solid transparent; cursor: pointer; padding: 1.5rem 0.25rem; font-weight: 700; color: #64748b; }
+        .nav-btn.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; font-weight: 900; }
         .ai-card { background: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
         .ai-badge { background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
         .fade-in { animation: fadeIn 0.4s ease-out forwards; }
@@ -20,14 +20,12 @@
 
     <header class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-20">
-            <div class="text-3xl font-black text-blue-700 tracking-tighter cursor-pointer" onclick="location.reload()">
-                머니파인더
-            </div>
-            <nav class="hidden lg:flex space-x-10 text-base font-bold text-slate-500">
-                <div onclick="showLoan('credit')" class="nav-link py-6 px-1 active" id="btn-credit">신용대출</div>
-                <div onclick="showLoan('mortgage')" class="nav-link py-6 px-1" id="btn-mortgage">주택담보대출</div>
-                <div onclick="showLoan('rent')" class="nav-link py-6 px-1" id="btn-rent">전월세 대출</div>
-                <div onclick="showLoan('car')" class="nav-link py-6 px-1" id="btn-car">자동차담보대출</div>
+            <div class="text-3xl font-black text-blue-700 tracking-tighter cursor-pointer" onclick="location.reload()">머니파인더</div>
+            <nav class="hidden lg:flex space-x-10">
+                <div class="nav-btn active" id="menu-credit">신용대출</div>
+                <div class="nav-btn" id="menu-mortgage">주택담보대출</div>
+                <div class="nav-btn" id="menu-rent">전월세 대출</div>
+                <div class="nav-btn" id="menu-car">자동차담보대출</div>
             </nav>
         </div>
     </header>
@@ -37,26 +35,192 @@
         <section class="ai-card p-8 md:p-10 mb-10 border border-slate-100">
             <div class="mb-8">
                 <h2 id="loan-title" class="text-3xl font-black text-slate-900 mb-2">신용대출 상환 시뮬레이션</h2>
-                <p id="loan-desc" class="text-slate-500 font-medium">한도와 이자를 즉시 계산하고 AI 분석 결과를 확인하세요.</p>
+                <p id="loan-desc" class="text-slate-500 font-medium">복잡한 조건 없이 한도와 이자를 즉시 계산해 보세요.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">대출 금액 (원)</label>
-                    <input type="number" id="amount" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 30000000">
+                    <input type="number" id="input-amount" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 30000000">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">연 이자율 (%)</label>
-                    <input type="number" id="interest" step="0.01" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 5.5">
+                    <input type="number" id="input-interest" step="0.01" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 5.5">
                 </div>
                 <div class="space-y-2">
                     <label class="block text-xs font-black text-slate-500 uppercase">대출 기간 (개월)</label>
-                    <input type="number" id="term" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 12">
+                    <input type="number" id="input-term" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:outline-none transition-all" placeholder="예: 12">
                 </div>
             </div>
 
-            <button onclick="calculateLoan()" class="w-full mt-8 bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg hover:bg-blue-700 transition-all active:scale-95">
+            <button id="calc-btn" class="w-full mt-8 bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-lg hover:bg-blue-700 transition-all active:scale-95">
                 상환 금액 계산하기
             </button>
 
-            <div id="result-box
+            <div id="result-box" class="hidden mt-10 pt-10 border-t border-slate-100 fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <p class="text-xs font-bold text-blue-600 mb-1">매월 예상 상환액</p>
+                        <p id="res-monthly" class="text-2xl font-black text-blue-900">-</p>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                        <p class="text-xs font-bold text-red-600 mb-1">총 납부 이자액</p>
+                        <p id="res-interest" class="text-2xl font-black text-red-900">-</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-section" class="ai-card p-8 md:p-10 border border-slate-100 bg-white">
+            <div class="flex items-center gap-2 mb-6">
+                <span class="text-lg">✨</span>
+                <span class="ai-badge text-xl uppercase tracking-tighter font-black italic">AI 개요</span>
+            </div>
+            <div id="ai-content" class="space-y-8 text-[15px] leading-relaxed text-slate-700">
+                </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 py-16 mt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p class="text-slate-300 font-bold mb-4 text-2xl tracking-tighter">머니파인더</p>
+            <p class="text-xs mb-8">금융 정보 분석 및 시뮬레이션 | webcashing.shop</p>
+            <p class="text-[10px] opacity-40">&copy; 2026 머니파인더. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 데이터 정의 (실시간 연동 없이 내장됨)
+        const loanDB = {
+            credit: {
+                title: "신용대출 상환 시뮬레이션",
+                desc: "개인의 신용도와 소득을 바탕으로 하는 가장 빠른 자금 마련 방법입니다.",
+                content: `
+                    <p class="font-bold text-slate-900">신용대출은 담보 없이 개인의 소득, 부채 현황, 연체 기록 등을 종합하여 금융기관에서 자금을 빌리는 상품입니다.</p>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 용어/동의어</h4>
+                        <p>직장인 신용대출, 마이너스 통장, 비상금 대출, 소액 대출</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 주요 사용 예시</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>생활비 조달: 긴급한 가계 자금이나 의료비 등</li>
+                            <li>투자 레버리지: 주식 공모주 청약이나 코인 투자 자금</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-slate-900 mb-2">주의사항</h4>
+                        <p class="text-sm italic">"DSR 규제 강화로 인해 이미 부채가 많다면 한도가 나오지 않을 수 있으니 주의하세요."</p>
+                    </div>
+                `
+            },
+            mortgage: {
+                title: "주택담보대출 한도 계산기",
+                desc: "내 집 마련의 꿈을 현실로 만드는 장기 자금 계획을 세우세요.",
+                content: `
+                    <p class="font-bold text-slate-900">주택을 담보로 큰 자금을 장기간 빌리는 상품입니다. LTV, DSR 등 정책 규제에 가장 민감합니다.</p>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 용어/동의어</h4>
+                        <p>주담대, 아파트 담보대출, 보금자리론, 디딤돌 대출</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 주요 사용 예시</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>매매 자금: 아파트 잔금 치를 때 부족한 자금 조달</li>
+                            <li>보증금 반환: 임차인에게 보증금을 돌려주기 위한 목적</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-sm">
+                        <p><strong>LTV 체크:</strong> 주택 가격의 최대 70%까지만 가능하므로 자기 자본 비율을 확인하십시오.</p>
+                    </div>
+                `
+            },
+            rent: {
+                title: "전월세 보증금 대출 계산기",
+                desc: "주거 안정을 위해 보증금 대출 이자 부담을 꼼꼼히 체크하세요.",
+                content: `
+                    <p class="font-bold text-slate-900">전세나 월세 보증금을 마련하기 위한 대출로, HUG나 HF의 보증을 통해 진행됩니다.</p>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 용어/동의어</h4>
+                        <p>전세자금 대출, 청년 전세 대출, 버팀목 자금</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-sm">
+                        <p>보증보험 가입이 가능한 집인지 계약 전에 반드시 확인해야 보증금을 지킬 수 있습니다.</p>
+                    </div>
+                `
+            },
+            car: {
+                title: "자동차담보대출 금융 시뮬레이터",
+                desc: "차량을 유지하면서 필요한 자금을 빠르게 확보하는 방법입니다.",
+                content: `
+                    <p class="font-bold text-slate-900">본인 명의의 차량 가치를 평가하여 입고 없이 그대로 타면서 받는 대출입니다.</p>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">● 용어/동의어</h4>
+                        <p>오토론, 무설정 자동차 대출, 중고차 담보대출</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-sm">
+                        <p>보통 10년 이내 연식의 차량만 가능하며, 신용대출보다 승인이 빠를 수 있습니다.</p>
+                    </div>
+                `
+            }
+        };
+
+        // 2. 초기화 및 탭 클릭 이벤트 리스너 등록
+        document.addEventListener('DOMContentLoaded', () => {
+            const menus = ['credit', 'mortgage', 'rent', 'car'];
+            
+            menus.forEach(type => {
+                document.getElementById('menu-' + type).addEventListener('click', () => {
+                    updateTab(type);
+                });
+            });
+
+            // 3. 계산기 버튼 클릭 리스너 등록
+            document.getElementById('calc-btn').addEventListener('click', performCalculation);
+
+            // 첫 화면 로드 (신용대출 기본)
+            updateTab('credit');
+        });
+
+        // 4. 탭 업데이트 함수
+        function updateTab(type) {
+            // 버튼 활성화 스타일
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('menu-' + type).classList.add('active');
+
+            // 내용 업데이트
+            const data = loanDB[type];
+            document.getElementById('loan-title').innerText = data.title;
+            document.getElementById('loan-desc').innerText = data.desc;
+            document.getElementById('ai-content').innerHTML = data.content;
+
+            // 결과창 숨기기
+            document.getElementById('result-box').classList.add('hidden');
+        }
+
+        // 5. 계산 실행 함수
+        function performCalculation() {
+            const amount = parseFloat(document.getElementById('input-amount').value);
+            const interest = parseFloat(document.getElementById('input-interest').value);
+            const term = parseFloat(document.getElementById('input-term').value);
+
+            if (isNaN(amount) || isNaN(interest) || isNaN(term) || amount <= 0 || term <= 0) {
+                alert("정확한 숫자를 입력해 주세요.");
+                return;
+            }
+
+            const monthlyInterest = (interest / 100) / 12;
+            const monthlyPayment = (amount * monthlyInterest * Math.pow(1 + monthlyInterest, term)) / (Math.pow(1 + monthlyInterest, term) - 1);
+            const totalInterest = (monthlyPayment * term) - amount;
+
+            document.getElementById('res-monthly').innerText = Math.round(monthlyPayment).toLocaleString() + " 원";
+            document.getElementById('res-interest').innerText = Math.round(totalInterest).toLocaleString() + " 원";
+            
+            const resultBox = document.getElementById('result-box');
+            resultBox.classList.remove('hidden');
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
