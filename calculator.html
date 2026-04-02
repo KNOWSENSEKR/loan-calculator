@@ -7,18 +7,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
-        body { background-color: #ffffff; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background-color: #ffffff; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; word-break: keep-all; }
+        
+        /* 모바일 메뉴 4열 그리드 배치 */
         .nav-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; width: 100%; }
         @media (min-width: 768px) { .nav-container { display: flex; flex-wrap: nowrap; gap: 0; width: auto; } }
+        
         .nav-link { padding: 0.6rem 0.2rem; font-weight: 700; color: #94a3b8; text-align: center; font-size: 0.75rem; border-bottom: 3px solid transparent; }
         @media (min-width: 768px) { .nav-link { padding: 1rem 0.75rem; font-size: 0.95rem; } }
         .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; }
-        .main-container { max-width: 800px; margin: 0 auto; padding: 0.5rem 0.75rem 2rem; }
-        .calc-section { background: #0f172a; border-radius: 20px; padding: 1.5rem; color: white; margin-top: 1rem; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1); }
+
+        /* 레이아웃 및 텍스트 초밀착 간격 */
+        .main-container { max-width: 800px; margin: 0 auto; padding: 1rem 0.75rem 4rem; }
+        .calc-section { background: #0f172a; border-radius: 20px; padding: 1.5rem; color: white; margin-top: 1rem; margin-bottom: 2rem; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1); }
         .input-box { width: 100%; padding: 0.8rem; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 1.25rem; font-weight: 900; outline: none; }
+        
+        /* 하단 가이드 스타일 */
+        h1 { font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-top: 2rem; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.05em; }
+        .sub-headline { font-size: 1.2rem; font-weight: 900; color: #1d4ed8; background: #eff6ff; padding: 0.6rem 0.8rem; border-radius: 8px; margin-top: 1.5rem; margin-bottom: 0.5rem; border-left: 5px solid #1d4ed8; width: fit-content; }
+        p { font-size: 0.95rem; line-height: 1.25; margin-bottom: 0.4rem; color: #475569; text-align: justify; }
+        strong { color: #1e293b; font-weight: 700; }
     </style>
 </head>
 <body>
+
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-2 md:py-0 md:h-20 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center justify-center w-full md:w-auto py-1 md:py-0">
@@ -35,32 +47,7 @@
             </nav>
         </div>
     </header>
+
     <div class="main-container">
         <div class="calc-section">
             <div class="mb-6"><h4 class="text-lg font-black text-blue-400 mb-1 italic uppercase">Universal Simulator</h4></div>
-            <div class="grid grid-cols-1 gap-4 mb-6">
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase mb-1 block">대출 원금 (원)</label><input type="number" id="amt" class="input-box" placeholder="0"></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase mb-1 block">연 이자율 (%)</label><input type="number" id="rate" step="0.1" class="input-box" placeholder="0.0"></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase mb-1 block">상환 기간 (개월)</label><input type="number" id="months" class="input-box" placeholder="0"></div>
-            </div>
-            <button onclick="doCalc()" class="w-full py-4 bg-blue-600 text-white text-xl font-black rounded-xl shadow-lg active:scale-95">분석 실행</button>
-            <div id="res" class="hidden mt-6 p-6 bg-white/5 rounded-xl border border-white/10 text-center">
-                <p class="text-[10px] font-bold text-blue-400 mb-2 uppercase tracking-widest">매월 예상 상환액</p>
-                <p id="res-m" class="text-3xl font-black text-white tracking-tighter">-</p>
-            </div>
-        </div>
-    </div>
-    <script>
-        function doCalc() {
-            const P = parseFloat(document.getElementById('amt').value);
-            const rate = parseFloat(document.getElementById('rate').value);
-            const n = parseFloat(document.getElementById('months').value);
-            if (!P || isNaN(rate) || !n) return alert("정확한 데이터를 입력하십시오.");
-            const r = (rate / 100) / 12;
-            let m = (r === 0) ? P / n : (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            document.getElementById('res-m').innerText = Math.round(m).toLocaleString() + " 원";
-            document.getElementById('res').classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
