@@ -3,176 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>자동차담보대출 완전 정복 가이드 | 머니파인더</title>
+    <title>자동차담보대출 가이드 | 머니파인더</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap');
         body { background-color: #ffffff; color: #334155; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; word-break: keep-all; }
-        
-        .nav-scroll { display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-        .nav-scroll::-webkit-scrollbar { display: none; }
-        
-        .nav-link { padding: 0.7rem 0.5rem; font-weight: 700; color: #94a3b8; transition: 0.3s; border-bottom: 3px solid transparent; flex-shrink: 0; font-size: 0.85rem; }
+        .nav-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; width: 100%; }
+        @media (min-width: 768px) { .nav-container { display: flex; flex-wrap: nowrap; gap: 0; width: auto; } }
+        .nav-link { padding: 0.6rem 0.2rem; font-weight: 700; color: #94a3b8; text-align: center; font-size: 0.75rem; border-bottom: 3px solid transparent; }
+        @media (min-width: 768px) { .nav-link { padding: 1rem 0.75rem; font-size: 0.95rem; } }
         .nav-link.active { color: #1d4ed8; border-bottom: 3px solid #1d4ed8; }
-
         .main-container { max-width: 800px; margin: 0 auto; padding: 1rem 0.75rem 2rem; }
-        @media (min-width: 768px) { .main-container { padding: 4rem 2rem 10rem; } }
-        
-        h1 { font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.05em; display: block; }
-        @media (min-width: 768px) { h1 { font-size: 3rem; margin-bottom: 3rem; } }
-
-        .sub-headline { font-size: 1.2rem; font-weight: 900; color: #1d4ed8; background: #eff6ff; padding: 0.6rem 0.8rem; border-radius: 8px; margin-top: 1.2rem; margin-bottom: 0.4rem; line-height: 1.2; letter-spacing: -0.02em; display: block; width: fit-content; border-left: 5px solid #1d4ed8; }
-        @media (min-width: 768px) { .sub-headline { font-size: 1.875rem; border-radius: 16px; padding: 1.25rem 1.75rem; margin-top: 5rem; margin-bottom: 2rem; border-left: 8px solid #1d4ed8; } }
-        
-        /* 모바일 초밀착 간격 설정 */
+        h1 { font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.05em; }
+        .sub-headline { font-size: 1.2rem; font-weight: 900; color: #1d4ed8; background: #eff6ff; padding: 0.6rem 0.8rem; border-radius: 8px; margin-top: 1.2rem; margin-bottom: 0.4rem; border-left: 5px solid #1d4ed8; }
         p { font-size: 0.95rem; line-height: 1.25; margin-bottom: 0.4rem; color: #475569; text-align: justify; }
-        @media (min-width: 768px) { p { font-size: 1.1rem; line-height: 2; margin-bottom: 3rem; } }
-
         ul { margin-bottom: 0.4rem; list-style-type: disc; padding-left: 1.1rem; color: #475569; }
-        @media (min-width: 768px) { ul { margin-bottom: 3.5rem; } }
-
         li { margin-bottom: 0.2rem; font-size: 0.95rem; line-height: 1.25; }
-        @media (min-width: 768px) { li { margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.8; } }
-
         strong { color: #1e293b; font-weight: 700; }
-        .highlight-text { color: #1d4ed8; font-weight: 800; }
     </style>
 </head>
 <body>
-
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-2 md:py-0 md:h-20 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center justify-center w-full md:w-auto py-1 md:py-0">
-                <div class="text-2xl md:text-3xl font-black text-blue-700 tracking-tighter shrink-0 cursor-pointer" onclick="location.href='index.html'">머니파인더</div>
+                <div class="text-2xl md:text-3xl font-black text-blue-700 tracking-tighter cursor-pointer" onclick="location.href='index.html'">머니파인더</div>
             </div>
-            <nav class="nav-scroll w-full md:w-auto mt-1 md:mt-0 border-t md:border-t-0 pt-1 md:pt-0">
+            <nav class="nav-container mt-1 md:mt-0 border-t md:border-t-0 pt-1 md:pt-0">
                 <a href="calculator.html" class="nav-link">대출계산기</a>
                 <a href="index.html" class="nav-link">신용대출</a>
                 <a href="mortgage.html" class="nav-link">주택담보대출</a>
-                <a href="rent.html" class="nav-link">전월세 대출</a>
-                <a href="car.html" class="nav-link active">자동차담보대출</a>
-                <a href="sunshine.html" class="nav-link">햇살론대출</a>
-                <a href="unemployed.html" class="nav-link">무직자대출</a>
+                <a href="rent.html" class="nav-link">전월세대출</a>
+                <a href="car.html" class="nav-link active">차담보대출</a>
+                <a href="sunshine.html" class="nav-link">햇살론</a>
+                <a href="unemployed.html" class="nav-link">무직자</a>
             </nav>
         </div>
     </header>
-
     <div class="main-container">
         <article>
-            <h1>자동차담보대출 완전 정복 가이드: 상품 종류·취급 금융사·특징·주의점 총정리 (2026년 최신 기준)</h1>
-            
-            <p>
-                자동차담보대출은 본인 소유 차량을 담보로 제공하고 받는 상품으로, ‘무입고’ 방식(차를 그대로 타면서 대출)이 일반적입니다.<br>
-                신용대출보다 금리가 낮고 한도가 넉넉하며 승인이 빠른 것이 장점입니다.<br>
-                2026년 스트레스 DSR 3단계 적용으로 신용대출 한도가 줄어든 상황에서 대안 상품으로 인기 폭발 중이며, 전체 자동차담보대출 잔액은 50조 원을 넘어서고 있습니다.<br>
-                주로 생활자금·사업자금·채무통합 목적으로 이용됩니다.
-            </p>
-
+            <h1>자동차담보대출 완전 정복 가이드: (2026년 최신 기준)</h1>
+            <p>본인 소유 차량을 활용한 ‘무입고’ 방식의 담보 금융 상품입니다.<br>
+            차량을 그대로 운행하면서 자본 유동성을 확보할 수 있는 것이 최대 장점입니다.<br>
+            DSR 규제 환경에서 신용대출의 실질적인 대안으로 주목받고 있습니다.</p>
             <div class="sub-headline">1. 자동차담보대출이란?</div>
+            <p>차량 시세의 70~100%를 기준으로 한도가 산정되는 담보 대출입니다.<br>
+            차령 10년 이내 및 주행거리 20만 km 미만 차량이 주된 대상입니다.<br>
+            신속한 심사를 통해 1~2일 내 자금 실행이 가능한 기동성을 갖추고 있습니다.</p>
+            <div class="sub-headline">7. 이용 시 주의점</div>
             <p>
-                자동차담보대출은 차량을 담보로 금융기관이 대출해주는 상품입니다.<br>
-                차량을 맡기지 않고 계속 운행할 수 있는 무입고 방식이 대부분이며, 차령 10년 이내·주행거리 20만 km 이내 차량이 주 대상입니다.<br>
-                신용대출과 달리 담보 가치(차량 시세 70~100%)를 기준으로 한도가 산정되며, 1~2일 내 승인·입금이 가능합니다.<br>
-                2026년 DSR 규제 강화에도 불구하고 중저신용자·급전 수요자에게 인기입니다.
-            </p>
-
-            <div class="sub-headline">2. 자동차담보대출 주요 상품 종류</div>
-            <ul>
-                <li><strong>금융권별:</strong> 1금융권(저금리·엄격), 2금융권(완화·캐피탈 중심)</li>
-                <li><strong>용도별:</strong> 생활안정자금, 사업자금, 채무통합, 차량 구매자금</li>
-                <li><strong>차종별:</strong> 승용차, 승합차, 화물차(4톤 미만)</li>
-            </ul>
-
-            <div class="sub-headline">3. 1금융권 취급 금융사 및 특징</div>
-            <p>
-                1금융권은 금리가 가장 낮지만 심사가 상대적으로 엄격합니다.<br>
-                2026년 고신용자 기준 최저 금리가 4.0%대입니다.
-            </p>
-            
-            <p>
-                <strong>주요 취급 금융사</strong><br>
-                - KB국민은행, 신한은행, 우리은행, 하나은행, NH농협은행<br>
-                - 인터넷은행: 카카오뱅크, 토스뱅크
-            </p>
-
-            <p>
-                <strong>특징</strong><br>
-                - 금리: 연 4.0~8.5%대<br>
-                - 한도: 차량 시세의 70~90% (최대 6,000만 원, DSR 적용)<br>
-                - 심사: 신용·소득·차량 감정평가 필수<br>
-                - 추천 대상: 신용점수 850점 이상, 안정적 소득자
-            </p>
-
-            <div class="sub-headline">4. 2금융권 취급 금융사 및 특징</div>
-            <p>
-                2금융권(특히 캐피탈사)이 자동차담보대출의 주축입니다.<br>
-                승인 문턱이 낮고 한도가 넉넉합니다.
-            </p>
-            
-            <p>
-                <strong>주요 취급 금융사</strong><br>
-                - <strong>캐피탈사:</strong> 현대캐피탈, KB캐피탈, 신한캐피탈, 롯데캐피탈, NH농협캐피탈<br>
-                - <strong>저축은행:</strong> 우리금융저축은행, SBI저축은행, OK저축은행, 페퍼저축은행<br>
-                - <strong>카드사:</strong> 신한카드, KB국민카드
-            </p>
-
-            <p>
-                <strong>특징</strong><br>
-                - 금리: 연 7~18%대 (고신용자 4.9%부터 가능)<br>
-                - 한도: 차량 시세의 80~100% (최대 1.5억 원)<br>
-                - 심사: 비교적 완화, 무입고 가능<br>
-                - 추천 대상: 1금융권 거절자, 중저신용자
-            </p>
-
-            <div class="sub-headline">5. 특별 상품 및 정부지원</div>
-            <p>
-                자동차담보대출은 정부지원 상품이 제한적이지만, 친환경차(전기·하이브리드) 구매 시 일부 은행에서 금리 우대가 있습니다.<br>
-                - <strong>친환경차 오토론:</strong> 1금융권 일부 은행에서 금리 0.5~1%p 우대<br>
-                - <strong>캐피탈사 프로모션:</strong> 제조사 연계 무이자·저금리 할부 연계 상품<br>
-                - <strong>저신용자 대상:</strong> 일부 캐피탈사에서 신용점수 570점 이상부터 가능
-            </p>
-
-            <div class="sub-headline">6. 자동차담보대출의 특징 (장점 vs 단점)</div>
-            <p>
-                <strong>장점</strong><br>
-                - 차량 그대로 타면서 현금 마련 가능(무입고)<br>
-                - 신용대출보다 금리 낮고 한도 높음<br>
-                - 승인 속도 빠름(1~2일 내)<br>
-                - 용도 자유, 최대 1.5억 원까지
-            </p>
-
-            <p>
-                <strong>단점</strong><br>
-                - 차량 시세 하락 시 한도·금리 불리<br>
-                - 담보 설정 비용·중도상환수수료 발생 가능<br>
-                - DSR 규제로 실제 한도 제한<br>
-                - 연체 시 차량 경매 위험
-            </p>
-
-            <div class="sub-headline">7. 자동차담보대출 이용 시 주의점</div>
-            <p>
-                1. <strong>DSR 사전 계산 필수:</strong> 스트레스 DSR 3단계 적용으로 한도가 크게 줄어듦<br>
-                2. <strong>차량 조건 확인:</strong> 출고 후 10년 이내·주행거리 20만 km 이내 필수<br>
-                3. <strong>금리·한도 비교:</strong> 1금융권 → 캐피탈사 순으로 비교<br>
-                4. <strong>무입고·입고 구분:</strong> 무입고 선택 시 금리·한도가 다소 불리할 수 있음<br>
-                5. <strong>중도상환수수료 확인:</strong> 대부분 2% 내외, 조기상환 시 비용 발생<br>
-                6. <strong>연체 주의:</strong> 연체 시 신용점수 하락 및 차량 경매 위험<br>
-                7. <strong>추가 비용 고려:</strong> 감정평가비·근저당 설정비 미리 계산
-            </p>
-            
-            <p>
-                실제 신청 전 차량 시세 조회(엔카·케이카)와 본인 DSR를 계산하세요.<br>
-                2026년 1금융권 평균 금리는 4.5~7.5%대, 2금융권은 7~18%대입니다.<br>
-                자동차담보대출은 편리하지만 차량 가치 변동과 상환 능력을 철저히 검토해야 합니다.<br>
-                금융 소비자는 상환 계획을 세우고 신중하게 이용할 것을 권고합니다.
+                1. <strong>차량 조건:</strong> 연식과 주행거리에 따른 승인 거절 사유 확인<br>
+                2. <strong>무입고 확인:</strong> 차량 운행권 유지 여부 및 근저당 설정 범위 체크<br>
+                3. <strong>시세 변동:</strong> 감가상각이 빠른 자산 특성상 한도 하락 가능성 염두<br>
+                4. <strong>연체 관리:</strong> 미상환 시 차량 압류 및 경매 처분 리스크 존재<br>
+                5. <strong>중도상환:</strong> 조기 상환 수수료율 비교를 통한 총비용 절감 전략 수립
             </p>
         </article>
     </div>
-
-    <footer class="bg-slate-900 py-8 text-center text-slate-500 px-4">
-        <p class="text-xl font-black text-white mb-2 tracking-tighter">머니파인더</p>
-        <p class="text-[10px] mb-4 opacity-60 font-medium">webcashing.shop | 금융 데이터의 새로운 기준</p>
-        <p class="text-[9px] opacity-30 tracking-[0.2em] uppercase font-bold">&copy; 2026 MONEY FINDER. ALL RIGHTS RESERVED.</p>
-    </footer>
 </body>
 </html>
