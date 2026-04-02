@@ -16,13 +16,16 @@
         @media (min-width: 768px) { .main-container { padding: 4rem 2rem 10rem; } }
         h1 { font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.05em; display: block; }
         @media (min-width: 768px) { h1 { font-size: 3rem; margin-bottom: 3rem; } }
-        .sub-headline { font-size: 1.2rem; font-weight: 900; color: #1d4ed8; background: #eff6ff; padding: 0.6rem 0.8rem; border-radius: 8px; margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.2; letter-spacing: -0.02em; display: block; width: fit-content; border-left: 5px solid #1d4ed8; }
+        /* 소제목 간격 추가 압축 */
+        .sub-headline { font-size: 1.2rem; font-weight: 900; color: #1d4ed8; background: #eff6ff; padding: 0.6rem 0.8rem; border-radius: 8px; margin-top: 1.2rem; margin-bottom: 0.4rem; line-height: 1.2; letter-spacing: -0.02em; display: block; width: fit-content; border-left: 5px solid #1d4ed8; }
         @media (min-width: 768px) { .sub-headline { font-size: 1.875rem; border-radius: 16px; padding: 1.25rem 1.75rem; margin-top: 5rem; margin-bottom: 2rem; } }
-        /* 모바일 초밀착 간격 설정 */
-        p { font-size: 0.95rem; line-height: 1.3; margin-bottom: 0.5rem; color: #475569; text-align: justify; }
+        /* [핵심] 모바일 본문 및 리스트 간격 초밀착 조절 */
+        p { font-size: 0.95rem; line-height: 1.25; margin-bottom: 0.4rem; color: #475569; text-align: justify; }
         @media (min-width: 768px) { p { font-size: 1.1rem; line-height: 2; margin-bottom: 3rem; } }
-        ul { margin-bottom: 0.5rem; list-style-type: disc; padding-left: 1.1rem; color: #475569; }
-        li { margin-bottom: 0.3rem; font-size: 0.95rem; line-height: 1.3; }
+        ul { margin-bottom: 0.4rem; list-style-type: disc; padding-left: 1.1rem; color: #475569; }
+        @media (min-width: 768px) { ul { margin-bottom: 3.5rem; } }
+        li { margin-bottom: 0.2rem; font-size: 0.95rem; line-height: 1.25; }
+        @media (min-width: 768px) { li { margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.8; } }
         strong { color: #1e293b; font-weight: 700; }
         .highlight-text { color: #1d4ed8; font-weight: 800; }
     </style>
@@ -102,12 +105,14 @@
             - 신용점수 영향 큼<br>
             - 상환 기간 1~5년으로 짧음</p>
             <div class="sub-headline">7. 신용대출 이용 시 주의점</div>
-            <p>1. <strong>DSR·LTV 사전 확인:</strong> 스트레스 DSR 3단계로 실제 한도가 크게 줄어듦<br>
-            2. <strong>신용조회 관리:</strong> 한 번에 여러 곳 조회 피하기 (신용점수 하락)<br>
-            3. <strong>상품 비교:</strong> 1금융권 → 정부지원 → 2금융권 순으로 비교<br>
-            4. <strong>연체 절대 금물:</strong> 5일 이상 연체 시 신용점수 급락 및 5년 금융 제한<br>
-            5. <strong>저신용자:</strong> 정부지원 상품 최우선 검토<br>
-            6. <strong>대출 후 관리:</strong> 조기상환 수수료 확인 및 상환 계획 수립</p>
+            <p>
+                1. <strong>DSR·LTV 사전 확인:</strong> 스트레스 DSR 3단계로 실제 한도가 크게 줄어듦<br>
+                2. <strong>신용조회 관리:</strong> 한 번에 여러 곳 조회 피하기 (신용점수 하락)<br>
+                3. <strong>상품 비교:</strong> 1금융권 → 정부지원 → 2금융권 순으로 비교<br>
+                4. <strong>연체 절대 금물:</strong> 5일 이상 연체 시 신용점수 급락 및 5년 금융 제한<br>
+                5. <strong>저신용자:</strong> 정부지원 상품 최우선 검토<br>
+                6. <strong>대출 후 관리:</strong> 조기상환 수수료 확인 및 상환 계획 수립
+            </p>
             <p>실제 신청 전 나이스·올크레딧에서 신용점수를 확인하고 여러 금융사의 한도·금리를 비교해야 합니다.<br>
             2026년 1금융권 평균 금리는 4.5~7%대, 2금융권은 10~18%대입니다.<br>
             신용대출은 편리하지만 과도한 이용은 신용 악순환을 부를 수 있습니다.<br>
